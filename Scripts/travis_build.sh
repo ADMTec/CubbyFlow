@@ -17,5 +17,5 @@ else
     cd ..
     pip install --user -r requirements.txt
     pip install --user .
-    python Tests/PythonTests/main.py
+    pytest Tests/PythonTests
 fi
