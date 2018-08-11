@@ -62,7 +62,7 @@ namespace CubbyFlow
 		//! \brief Invokes the given function \p func for each grid cell.
 		//!
 		//! This function invokes the given function object \p func for each grid
-		//! cell in serial manner. The input parameters are i and j indices of a
+		//! cell in serial manner. The input parameters are i, j, and k indices of a
 		//! grid cell. The order of execution is i-first, j-next, k-last.
 		//!
 		void ForEachCellIndex(const std::function<void(size_t, size_t, size_t)>& func) const;
@@ -71,7 +71,7 @@ namespace CubbyFlow
 		//! \brief Invokes the given function \p func for each grid cell in parallel.
 		//!
 		//! This function invokes the given function object \p func for each grid
-		//! cell in parallel manner. The input parameters are i and j indices of a
+		//! cell in parallel manner. The input parameters are i, j, and k indices of a
 		//! grid cell. The order of execution can be arbitrary since it's
 		//! multi-threaded.
 		//!
