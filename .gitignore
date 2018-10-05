@@ -17,6 +17,7 @@ build/
 dist/
 pyCubbyFlow.egg-info/
 *.pyc
+.pytest_cache/
 
 ## Except resource files
 !Resources/
