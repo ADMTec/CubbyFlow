@@ -12,37 +12,27 @@
 
 namespace CubbyFlow
 {
-	Grid3::Grid3()
-	{
-		// Do nothing
-	}
-
-	Grid3::~Grid3()
-	{
-		// Do nothing
-	}
-
-	const Size3& Grid3::Resolution() const
+	const Size3& Grid3::GetResolution() const
 	{
 		return m_resolution;
 	}
 
-	const Vector3D& Grid3::Origin() const
+	const Vector3D& Grid3::GetOrigin() const
 	{
 		return m_origin;
 	}
 
-	const Vector3D& Grid3::GridSpacing() const
+	const Vector3D& Grid3::GetGridSpacing() const
 	{
 		return m_gridSpacing;
 	}
 
-	const BoundingBox3D& Grid3::BoundingBox() const
+	const BoundingBox3D& Grid3::GetBoundingBox() const
 	{
 		return m_boundingBox;
 	}
 
-	Grid3::DataPositionFunc Grid3::CellCenterPosition() const
+	Grid3::DataPositionFunc Grid3::GetCellCenterPosition() const
 	{
 		Vector3D h = m_gridSpacing;
 		Vector3D o = m_origin;

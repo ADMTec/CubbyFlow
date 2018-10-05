@@ -12,37 +12,27 @@
 
 namespace CubbyFlow
 {
-	Grid2::Grid2()
-	{
-		// Do nothing
-	}
-
-	Grid2::~Grid2()
-	{
-		// Do nothing
-	}
-
-	const Size2& Grid2::Resolution() const
+	const Size2& Grid2::GetResolution() const
 	{
 		return m_resolution;
 	}
 
-	const Vector2D& Grid2::Origin() const
+	const Vector2D& Grid2::GetOrigin() const
 	{
 		return m_origin;
 	}
 
-	const Vector2D& Grid2::GridSpacing() const
+	const Vector2D& Grid2::GetGridSpacing() const
 	{
 		return m_gridSpacing;
 	}
 
-	const BoundingBox2D& Grid2::BoundingBox() const
+	const BoundingBox2D& Grid2::GetBoundingBox() const
 	{
 		return m_boundingBox;
 	}
 
-	Grid2::DataPositionFunc Grid2::CellCenterPosition() const
+	Grid2::DataPositionFunc Grid2::GetCellCenterPosition() const
 	{
 		Vector2D h = m_gridSpacing;
 		Vector2D o = m_origin;

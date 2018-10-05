@@ -35,28 +35,28 @@ namespace CubbyFlow
 		using DataPositionFunc = std::function<Vector2D(size_t, size_t)>;
 
 		//! Constructs an empty grid.
-		Grid2();
+		Grid2() = default;
 
 		//! Default destructor.
-		virtual ~Grid2();
+		virtual ~Grid2() = default;
 
 		//! Returns the type name of derived grid.
-		virtual std::string TypeName() const = 0;
+		virtual std::string GetTypeName() const = 0;
 
 		//! Returns the grid resolution.
-		const Size2& Resolution() const;
+		const Size2& GetResolution() const;
 
 		//! Returns the grid origin.
-		const Vector2D& Origin() const;
+		const Vector2D& GetOrigin() const;
 
 		//! Returns the grid spacing.
-		const Vector2D& GridSpacing() const;
+		const Vector2D& GetGridSpacing() const;
 
 		//! Returns the bounding box of the grid.
-		const BoundingBox2D& BoundingBox() const;
+		const BoundingBox2D& GetBoundingBox() const;
 
 		//! Returns the function that maps grid index to the cell-center position.
-		DataPositionFunc CellCenterPosition() const;
+		DataPositionFunc GetCellCenterPosition() const;
 
 		//!
 		//! \brief Invokes the given function \p func for each grid cell.
@@ -109,7 +109,7 @@ namespace CubbyFlow
 	using Grid2Ptr = std::shared_ptr<Grid2>;
 
 #define CUBBYFLOW_GRID2_TYPE_NAME(DerivedClassName) \
-	std::string TypeName() const override \
+	std::string GetTypeName() const override \
 	{ \
 		return #DerivedClassName; \
 	}
