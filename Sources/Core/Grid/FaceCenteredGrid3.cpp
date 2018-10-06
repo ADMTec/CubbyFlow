@@ -145,7 +145,8 @@ namespace CubbyFlow
 
 	Vector3D FaceCenteredGrid3::ValueAtCellCenter(size_t i, size_t j, size_t k) const
 	{
-		assert(i < Resolution().x && j < Resolution().y && k < Resolution().z);
+        assert(i < GetResolution().x && j < GetResolution().y &&
+               k < GetResolution().z);
 
 		return 0.5 * Vector3D(
 			m_dataU(i, j, k) + m_dataU(i + 1, j, k),
@@ -155,7 +156,8 @@ namespace CubbyFlow
 
 	double FaceCenteredGrid3::DivergenceAtCellCenter(size_t i, size_t j, size_t k) const
 	{
-		assert(i < Resolution().x && j < Resolution().y && k < Resolution().z);
+        assert(i < GetResolution().x && j < GetResolution().y &&
+               k < GetResolution().z);
 
 		const Vector3D& gs = GetGridSpacing();
 

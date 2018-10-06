@@ -121,7 +121,7 @@ namespace CubbyFlow
 
 	Vector2D FaceCenteredGrid2::ValueAtCellCenter(size_t i, size_t j) const
 	{
-		assert(i < Resolution().x && j < Resolution().y);
+		assert(i < GetResolution().x && j < GetResolution().y);
 
 		return 0.5 * Vector2D(
 			m_dataU(i, j) + m_dataU(i + 1, j),
@@ -130,7 +130,7 @@ namespace CubbyFlow
 
 	double FaceCenteredGrid2::DivergenceAtCellCenter(size_t i, size_t j) const
 	{
-		assert(i < Resolution().x && j < Resolution().y);
+		assert(i < GetResolution().x && j < GetResolution().y);
 
 		const Vector2D& gs = GetGridSpacing();
 
