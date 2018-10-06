@@ -126,11 +126,11 @@ void AddCollocatedVectorGrid2(pybind11::module& m)
 		pybind11::arg("j"))
 	.def("GetDataAccessor", &CollocatedVectorGrid2::GetDataAccessor,
 		R"pbdoc(
-			Returns the data array accessor.
+			The data array accessor.
 		)pbdoc")
 	.def("GetDataPosition", &CollocatedVectorGrid2::GetDataPosition,
 		R"pbdoc(
-			Returns the function that maps data point to its position.
+			The function that maps data point to its position.
 		)pbdoc")
 	.def("ForEachDataPointIndex", [](CollocatedVectorGrid2& instance, pybind11::function func)
 	{
@@ -294,11 +294,11 @@ void AddCollocatedVectorGrid3(pybind11::module& m)
 		pybind11::arg("k"))
 	.def("GetDataAccessor", &CollocatedVectorGrid3::GetDataAccessor,
 		R"pbdoc(
-			Returns the data array accessor.
+			The data array accessor.
 		)pbdoc")
 	.def("GetDataPosition", &CollocatedVectorGrid3::GetDataPosition,
 		R"pbdoc(
-			Returns the function that maps data point to its position.
+			The function that maps data point to its position.
 		)pbdoc")
 	.def("ForEachDataPointIndex", [](CollocatedVectorGrid3& instance, pybind11::function func)
 	{
