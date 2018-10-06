@@ -46,12 +46,12 @@ namespace CubbyFlow
 	Size2 CellCenteredVectorGrid2::GetDataSize() const
 	{
 		// The size of the data should be the same as the grid resolution.
-		return Resolution();
+		return GetResolution();
 	}
 
 	Vector2D CellCenteredVectorGrid2::GetDataOrigin() const
 	{
-		return Origin() + 0.5 * GridSpacing();
+		return GetOrigin() + 0.5 * GetGridSpacing();
 	}
 
 	void CellCenteredVectorGrid2::Swap(Grid2* other)

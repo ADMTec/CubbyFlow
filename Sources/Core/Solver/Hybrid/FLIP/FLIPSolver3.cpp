@@ -93,15 +93,15 @@ namespace CubbyFlow
 
 		LinearArraySampler3<float, float> uSampler(
 			m_uDelta.ConstAccessor(),
-			flow->GridSpacing().CastTo<float>(),
+			flow->GetGridSpacing().CastTo<float>(),
 			flow->GetUOrigin().CastTo<float>());
 		LinearArraySampler3<float, float> vSampler(
 			m_vDelta.ConstAccessor(),
-			flow->GridSpacing().CastTo<float>(),
+			flow->GetGridSpacing().CastTo<float>(),
 			flow->GetVOrigin().CastTo<float>());
 		LinearArraySampler3<float, float> wSampler(
 			m_wDelta.ConstAccessor(),
-			flow->GridSpacing().CastTo<float>(),
+			flow->GetGridSpacing().CastTo<float>(),
 			flow->GetWOrigin().CastTo<float>());
 
 		auto sampler = [uSampler, vSampler, wSampler](const Vector3D& x)

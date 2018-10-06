@@ -26,7 +26,7 @@ namespace CubbyFlow
 
 	void VectorGrid3::Clear()
 	{
-		Resize(Size3(), GridSpacing(), Origin(), Vector3D());
+		Resize(Size3(), GetGridSpacing(), GetOrigin(), Vector3D());
 	}
 
 	void VectorGrid3::Resize(
@@ -61,19 +61,19 @@ namespace CubbyFlow
 			Vector3D(gridSpacingX, gridSpacingY, gridSpacingZ),
 			Vector3D(originX, originY, originZ));
 	}
-
+    
 	void VectorGrid3::Resize(const Vector3D& gridSpacing, const Vector3D& origin)
 	{
-		Resize(Resolution(), gridSpacing, origin);
+		Resize(GetResolution(), gridSpacing, origin);
 	}
 
 	void VectorGrid3::Serialize(std::vector<uint8_t>* buffer) const
 	{
 		flatbuffers::FlatBufferBuilder builder(1024);
 
-		auto fbsResolution = CubbyFlowToFlatbuffers(Resolution());
-		auto fbsGridSpacing = CubbyFlowToFlatbuffers(GridSpacing());
-		auto fbsOrigin = CubbyFlowToFlatbuffers(Origin());
+		auto fbsResolution = CubbyFlowToFlatbuffers(GetResolution());
+		auto fbsGridSpacing = CubbyFlowToFlatbuffers(GetGridSpacing());
+		auto fbsOrigin = CubbyFlowToFlatbuffers(GetOrigin());
 
 		std::vector<double> gridData;
 		GetData(&gridData);

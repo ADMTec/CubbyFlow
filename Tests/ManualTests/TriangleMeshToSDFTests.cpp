@@ -69,8 +69,8 @@ CUBBYFLOW_BEGIN_TEST_F(TriangleMeshToSDF, Cube)
 	TriangleMesh3 triMesh2;
 	MarchingCubes(
 		grid.GetConstDataAccessor(),
-		grid.GridSpacing(),
-		grid.Origin(),
+		grid.GetGridSpacing(),
+		grid.GetOrigin(),
 		&triMesh2,
 		0,
 		DIRECTION_ALL);
@@ -105,8 +105,8 @@ CUBBYFLOW_BEGIN_TEST_F(TriangleMeshToSDF, Bunny)
 	TriangleMesh3 triMesh2;
 	MarchingCubes(
 		grid.GetConstDataAccessor(),
-		grid.GridSpacing(),
-		grid.Origin(),
+		grid.GetGridSpacing(),
+		grid.GetOrigin(),
 		&triMesh2,
 		0,
 		DIRECTION_ALL);
@@ -141,8 +141,8 @@ CUBBYFLOW_BEGIN_TEST_F(TriangleMeshToSDF, Dragon)
 	TriangleMesh3 triMesh2;
 	MarchingCubes(
 		grid.GetConstDataAccessor(),
-		grid.GridSpacing(),
-		grid.Origin(),
+		grid.GetGridSpacing(),
+		grid.GetOrigin(),
 		&triMesh2,
 		0,
 		DIRECTION_ALL);

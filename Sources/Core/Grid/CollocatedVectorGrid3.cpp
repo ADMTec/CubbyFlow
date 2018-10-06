@@ -35,7 +35,7 @@ namespace CubbyFlow
 	double CollocatedVectorGrid3::DivergenceAtDataPoint(size_t i, size_t j, size_t k) const
 	{
 		const Size3 ds = m_data.size();
-		const Vector3D& gs = GridSpacing();
+		const Vector3D& gs = GetGridSpacing();
 
 		assert(i < ds.x && j < ds.y && k < ds.z);
 
@@ -55,7 +55,7 @@ namespace CubbyFlow
 	Vector3D CollocatedVectorGrid3::CurlAtDataPoint(size_t i, size_t j, size_t k) const
 	{
 		const Size3 ds = m_data.size();
-		const Vector3D& gs = GridSpacing();
+		const Vector3D& gs = GetGridSpacing();
 
 		assert(i < ds.x && j < ds.y && k < ds.z);
 
@@ -142,7 +142,7 @@ namespace CubbyFlow
 		Vector3D dataOrigin = GetDataOrigin();
 		return [this, dataOrigin](size_t i, size_t j, size_t k) -> Vector3D
 		{
-			return dataOrigin + GridSpacing() * Vector3D({ i, j, k });
+			return dataOrigin + GetGridSpacing() * Vector3D({ i, j, k });
 		};
 	}
 
@@ -189,7 +189,7 @@ namespace CubbyFlow
 
 	void CollocatedVectorGrid3::ResetSampler()
 	{
-		m_linearSampler = LinearArraySampler3<Vector3D, double>(m_data.ConstAccessor(), GridSpacing(), GetDataOrigin());
+		m_linearSampler = LinearArraySampler3<Vector3D, double>(m_data.ConstAccessor(), GetGridSpacing(), GetDataOrigin());
 		m_sampler = m_linearSampler.Functor();
 	}
 

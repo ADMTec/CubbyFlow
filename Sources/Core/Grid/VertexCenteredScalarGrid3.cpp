@@ -45,9 +45,9 @@ namespace CubbyFlow
 
 	Size3 VertexCenteredScalarGrid3::GetDataSize() const
 	{
-		if (Resolution() != Size3(0, 0, 0))
+		if (GetResolution() != Size3(0, 0, 0))
 		{
-			return Resolution() + Size3(1, 1, 1);
+			return GetResolution() + Size3(1, 1, 1);
 		}
 
 		return Size3(0, 0, 0);
@@ -55,7 +55,7 @@ namespace CubbyFlow
 
 	Vector3D VertexCenteredScalarGrid3::GetDataOrigin() const
 	{
-		return Origin();
+		return GetOrigin();
 	}
 
 	std::shared_ptr<ScalarGrid3> VertexCenteredScalarGrid3::Clone() const

@@ -39,7 +39,7 @@ namespace CubbyFlow
 
 	void VolumeGridEmitter2::AddStepFunctionTarget(const ScalarGrid2Ptr& scalarGridTarget, double minValue, double maxValue)
 	{
-		double smoothingWidth = scalarGridTarget->GridSpacing().Min();
+		double smoothingWidth = scalarGridTarget->GetGridSpacing().Min();
 		auto mapper = [minValue, maxValue, smoothingWidth, scalarGridTarget](double sdf, const Vector2D&, double oldVal)
 		{
 			double step = 1.0 - SmearedHeavisideSDF(sdf / smoothingWidth);

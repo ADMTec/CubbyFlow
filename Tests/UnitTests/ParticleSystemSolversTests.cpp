@@ -16,7 +16,7 @@ TEST(ParticleSystemSolver2, Constructor)
 	EXPECT_TRUE(wind != nullptr);
 
 	auto collider = solver.GetCollider();
-	EXPECT_EQ(nullptr, collider);
+    EXPECT_TRUE(collider == nullptr);
 }
 
 TEST(ParticleSystemSolver2, BasicParams)
@@ -75,7 +75,7 @@ TEST(ParticleSystemSolver3, Constructor)
 	EXPECT_TRUE(wind != nullptr);
 
 	auto collider = solver.GetCollider();
-	EXPECT_EQ(nullptr, collider);
+    EXPECT_TRUE(collider == nullptr);
 }
 
 TEST(ParticleSystemSolver3, BasicParams)

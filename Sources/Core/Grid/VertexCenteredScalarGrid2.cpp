@@ -45,9 +45,9 @@ namespace CubbyFlow
 
 	Size2 VertexCenteredScalarGrid2::GetDataSize() const
 	{
-		if (Resolution() != Size2(0, 0))
+		if (GetResolution() != Size2(0, 0))
 		{
-			return Resolution() + Size2(1, 1);
+			return GetResolution() + Size2(1, 1);
 		}
 
 		return Size2(0, 0);
@@ -55,7 +55,7 @@ namespace CubbyFlow
 
 	Vector2D VertexCenteredScalarGrid2::GetDataOrigin() const
 	{
-		return Origin();
+		return GetOrigin();
 	}
 
 	std::shared_ptr<ScalarGrid2> VertexCenteredScalarGrid2::Clone() const

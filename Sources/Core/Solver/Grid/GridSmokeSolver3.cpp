@@ -182,7 +182,7 @@ namespace CubbyFlow
 				tAmb += (*temp)(i, j, k);
 			});
 
-			tAmb /= static_cast<double>(temp->Resolution().x * temp->Resolution().y * temp->Resolution().z);
+			tAmb /= static_cast<double>(temp->GetResolution().x * temp->GetResolution().y * temp->GetResolution().z);
 
 			auto u = vel->GetUAccessor();
 			auto v = vel->GetVAccessor();

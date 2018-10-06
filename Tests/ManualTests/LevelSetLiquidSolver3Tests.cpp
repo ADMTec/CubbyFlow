@@ -31,7 +31,7 @@ namespace
 		
 		MarchingCubes(
 			sdf->GetConstDataAccessor(),
-			sdf->GridSpacing(),
+			sdf->GetGridSpacing(),
 			sdf->GetDataOrigin(),
 			&mesh,
 			0.0,

@@ -82,11 +82,11 @@ namespace CubbyFlow
 
 		LinearArraySampler2<float, float> uSampler(
 			m_uDelta.ConstAccessor(),
-			flow->GridSpacing().CastTo<float>(),
+			flow->GetGridSpacing().CastTo<float>(),
 			flow->GetUOrigin().CastTo<float>());
 		LinearArraySampler2<float, float> vSampler(
 			m_vDelta.ConstAccessor(),
-			flow->GridSpacing().CastTo<float>(),
+			flow->GetGridSpacing().CastTo<float>(),
 			flow->GetVOrigin().CastTo<float>());
 
 		auto sampler = [uSampler, vSampler](const Vector2D& x)

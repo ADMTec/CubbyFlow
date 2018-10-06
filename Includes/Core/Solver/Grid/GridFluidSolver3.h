@@ -151,7 +151,7 @@ namespace CubbyFlow
 		//! \brief Returns the grid spacing of the grid system data.
 		//!
 		//! This function returns the resolution of the grid system data. This is
-		//! equivalent to calling gridSystemData()->gridSpacing(), but provides a
+		//! equivalent to calling gridSystemData()->GetGridSpacing(), but provides a
 		//! shortcut.
 		//!
 		Vector3D GetGridSpacing() const;

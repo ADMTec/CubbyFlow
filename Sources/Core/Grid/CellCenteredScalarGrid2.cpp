@@ -46,12 +46,12 @@ namespace CubbyFlow
 	Size2 CellCenteredScalarGrid2::GetDataSize() const
 	{
 		// The size of the data should be the same as the grid resolution.
-		return Resolution();
+		return GetResolution();
 	}
 
 	Vector2D CellCenteredScalarGrid2::GetDataOrigin() const
 	{
-		return Origin() + 0.5 * GridSpacing();
+		return GetOrigin() + 0.5 * GetGridSpacing();
 	}
 
 	std::shared_ptr<ScalarGrid2> CellCenteredScalarGrid2::Clone() const

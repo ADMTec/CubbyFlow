@@ -105,9 +105,9 @@ TEST(GridSystemData3, Serialize)
 
 	auto scalar0_2 = grids2.GetScalarDataAt(scalarIdx0);
 	EXPECT_TRUE(std::dynamic_pointer_cast<CellCenteredScalarGrid3>(scalar0_2) != nullptr);
-	EXPECT_EQ(scalar0->Resolution(), scalar0_2->Resolution());
-	EXPECT_EQ(scalar0->GridSpacing(), scalar0_2->GridSpacing());
-	EXPECT_EQ(scalar0->Origin(), scalar0_2->Origin());
+	EXPECT_EQ(scalar0->GetResolution(), scalar0_2->GetResolution());
+	EXPECT_EQ(scalar0->GetGridSpacing(), scalar0_2->GetGridSpacing());
+	EXPECT_EQ(scalar0->GetOrigin(), scalar0_2->GetOrigin());
 	EXPECT_EQ(scalar0->GetDataSize(), scalar0_2->GetDataSize());
 	EXPECT_EQ(scalar0->GetDataOrigin(), scalar0_2->GetDataOrigin());
 	scalar0->ForEachDataPointIndex([&](size_t i, size_t j, size_t k)
@@ -119,9 +119,9 @@ TEST(GridSystemData3, Serialize)
 	auto cell_vector0 = std::dynamic_pointer_cast<CellCenteredVectorGrid3>(vector0);
 	auto cell_vector0_2 = std::dynamic_pointer_cast<CellCenteredVectorGrid3>(vector0_2);
 	EXPECT_TRUE(cell_vector0_2 != nullptr);
-	EXPECT_EQ(vector0->Resolution(), vector0_2->Resolution());
-	EXPECT_EQ(vector0->GridSpacing(), vector0_2->GridSpacing());
-	EXPECT_EQ(vector0->Origin(), vector0_2->Origin());
+    EXPECT_EQ(vector0->GetResolution(), vector0_2->GetResolution());
+	EXPECT_EQ(vector0->GetGridSpacing(), vector0_2->GetGridSpacing());
+    EXPECT_EQ(vector0->GetOrigin(), vector0_2->GetOrigin());
 	EXPECT_EQ(cell_vector0->GetDataSize(), cell_vector0_2->GetDataSize());
 	EXPECT_EQ(cell_vector0->GetDataOrigin(), cell_vector0_2->GetDataOrigin());
 	cell_vector0->ForEachDataPointIndex([&](size_t i, size_t j, size_t k)
@@ -131,9 +131,9 @@ TEST(GridSystemData3, Serialize)
 
 	auto scalar1_2 = grids2.GetAdvectableScalarDataAt(scalarIdx1);
 	EXPECT_TRUE(std::dynamic_pointer_cast<VertexCenteredScalarGrid3>(scalar1_2) != nullptr);
-	EXPECT_EQ(scalar1->Resolution(), scalar1_2->Resolution());
-	EXPECT_EQ(scalar1->GridSpacing(), scalar1_2->GridSpacing());
-	EXPECT_EQ(scalar1->Origin(), scalar1_2->Origin());
+    EXPECT_EQ(scalar1->GetResolution(), scalar1_2->GetResolution());
+	EXPECT_EQ(scalar1->GetGridSpacing(), scalar1_2->GetGridSpacing());
+    EXPECT_EQ(scalar1->GetOrigin(), scalar1_2->GetOrigin());
 	EXPECT_EQ(scalar1->GetDataSize(), scalar1_2->GetDataSize());
 	EXPECT_EQ(scalar1->GetDataOrigin(), scalar1_2->GetDataOrigin());
 	scalar1->ForEachDataPointIndex([&](size_t i, size_t j, size_t k)
@@ -145,9 +145,9 @@ TEST(GridSystemData3, Serialize)
 	auto vert_vector1 = std::dynamic_pointer_cast<VertexCenteredVectorGrid3>(vector1);
 	auto vert_vector1_2 = std::dynamic_pointer_cast<VertexCenteredVectorGrid3>(vector1_2);
 	EXPECT_TRUE(vert_vector1_2 != nullptr);
-	EXPECT_EQ(vector1->Resolution(), vector1_2->Resolution());
-	EXPECT_EQ(vector1->GridSpacing(), vector1_2->GridSpacing());
-	EXPECT_EQ(vector1->Origin(), vector1_2->Origin());
+    EXPECT_EQ(vector1->GetResolution(), vector1_2->GetResolution());
+	EXPECT_EQ(vector1->GetGridSpacing(), vector1_2->GetGridSpacing());
+    EXPECT_EQ(vector1->GetOrigin(), vector1_2->GetOrigin());
 	EXPECT_EQ(vert_vector1->GetDataSize(), vert_vector1_2->GetDataSize());
 	EXPECT_EQ(vert_vector1->GetDataOrigin(), vert_vector1_2->GetDataOrigin());
 	vert_vector1->ForEachDataPointIndex([&](size_t i, size_t j, size_t k)
@@ -157,9 +157,9 @@ TEST(GridSystemData3, Serialize)
 
 	auto velocity = grids.GetVelocity();
 	auto velocity2 = grids2.GetVelocity();
-	EXPECT_EQ(velocity->Resolution(), velocity2->Resolution());
-	EXPECT_EQ(velocity->GridSpacing(), velocity2->GridSpacing());
-	EXPECT_EQ(velocity->Origin(), velocity2->Origin());
+    EXPECT_EQ(velocity->GetResolution(), velocity2->GetResolution());
+	EXPECT_EQ(velocity->GetGridSpacing(), velocity2->GetGridSpacing());
+    EXPECT_EQ(velocity->GetOrigin(), velocity2->GetOrigin());
 	EXPECT_EQ(velocity->GetUSize(), velocity2->GetUSize());
 	EXPECT_EQ(velocity->GetVSize(), velocity2->GetVSize());
 	EXPECT_EQ(velocity->GetWSize(), velocity2->GetWSize());

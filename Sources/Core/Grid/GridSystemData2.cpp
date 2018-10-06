@@ -106,7 +106,7 @@ namespace CubbyFlow
 
 	BoundingBox2D GridSystemData2::GetBoundingBox() const
 	{
-		return m_velocity->BoundingBox();
+		return m_velocity->GetBoundingBox();
 	}
 
 	size_t GridSystemData2::AddScalarData(const ScalarGridBuilder2Ptr& builder, double initialVal)

@@ -20,7 +20,7 @@ namespace CubbyFlow
 	{
 		auto sourceSampler = CubicArraySampler2<double, double>(
 			source.GetConstDataAccessor(),
-			source.GridSpacing(),
+			source.GetGridSpacing(),
 			source.GetDataOrigin());
 		return sourceSampler.Functor();
 	}
@@ -29,7 +29,7 @@ namespace CubbyFlow
 	{
 		auto sourceSampler = CubicArraySampler2<Vector2D, double>(
 			source.GetConstDataAccessor(),
-			source.GridSpacing(),
+			source.GetGridSpacing(),
 			source.GetDataOrigin());
 		return sourceSampler.Functor();
 	}
@@ -38,11 +38,11 @@ namespace CubbyFlow
 	{
 		auto uSourceSampler = CubicArraySampler2<double, double>(
 			source.GetUConstAccessor(),
-			source.GridSpacing(),
+			source.GetGridSpacing(),
 			source.GetUOrigin());
 		auto vSourceSampler = CubicArraySampler2<double, double>(
 			source.GetVConstAccessor(),
-			source.GridSpacing(),
+			source.GetGridSpacing(),
 			source.GetVOrigin());
 		return [uSourceSampler, vSourceSampler](const Vector2D& x)
 		{

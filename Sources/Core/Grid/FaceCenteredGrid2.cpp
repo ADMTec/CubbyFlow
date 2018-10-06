@@ -132,7 +132,7 @@ namespace CubbyFlow
 	{
 		assert(i < Resolution().x && j < Resolution().y);
 
-		const Vector2D& gs = GridSpacing();
+		const Vector2D& gs = GetGridSpacing();
 
 		double leftU = m_dataU(i, j);
 		double rightU = m_dataU(i + 1, j);
@@ -146,11 +146,11 @@ namespace CubbyFlow
 
 	double FaceCenteredGrid2::CurlAtCellCenter(size_t i, size_t j) const
 	{
-		const Size2& res = Resolution();
+		const Size2& res = GetResolution();
 
 		assert(i < res.x && j < res.y);
 
-		const Vector2D gs = GridSpacing();
+		const Vector2D gs = GetGridSpacing();
 
 		Vector2D left = ValueAtCellCenter((i > 0) ? i - 1 : i, j);
 		Vector2D right = ValueAtCellCenter((i + 1 < res.x) ? i + 1 : i, j);
@@ -188,8 +188,8 @@ namespace CubbyFlow
 
 	VectorGrid2::DataPositionFunc FaceCenteredGrid2::GetUPosition() const
 	{
-		Vector2D h = GridSpacing();
-
+		Vector2D h = GetGridSpacing();
+        
 		return [this, h](size_t i, size_t j) -> Vector2D
 		{
 			return m_dataOriginU + h * Vector2D({ i, j });
@@ -198,7 +198,7 @@ namespace CubbyFlow
 
 	VectorGrid2::DataPositionFunc FaceCenteredGrid2::GetVPosition() const
 	{
-		Vector2D h = GridSpacing();
+		Vector2D h = GetGridSpacing();
 
 		return [this, h](size_t i, size_t j) -> Vector2D
 		{
@@ -309,11 +309,11 @@ namespace CubbyFlow
 	{
 		ssize_t i, j;
 		double fx, fy;
-		Vector2D cellCenterOrigin = Origin() + 0.5 * GridSpacing();
-		Vector2D normalizedX = (x - cellCenterOrigin) / GridSpacing();
+		Vector2D cellCenterOrigin = GetOrigin() + 0.5 * GetGridSpacing();
+		Vector2D normalizedX = (x - cellCenterOrigin) / GetGridSpacing();
 
-		GetBarycentric(normalizedX.x, 0, static_cast<ssize_t>(Resolution().x) - 1, &i, &fx);
-		GetBarycentric(normalizedX.y, 0, static_cast<ssize_t>(Resolution().y) - 1, &j, &fy);
+		GetBarycentric(normalizedX.x, 0, static_cast<ssize_t>(GetResolution().x) - 1, &i, &fx);
+		GetBarycentric(normalizedX.y, 0, static_cast<ssize_t>(GetResolution().y) - 1, &j, &fy);
 
 		std::array<Point2UI, 4> indices;
 		std::array<double, 4> weights;
@@ -342,11 +342,11 @@ namespace CubbyFlow
 	{
 		ssize_t i, j;
 		double fx, fy;
-		Vector2D cellCenterOrigin = Origin() + 0.5 * GridSpacing();
-		Vector2D normalizedX = (x - cellCenterOrigin) / GridSpacing();
+		Vector2D cellCenterOrigin = GetOrigin() + 0.5 * GetGridSpacing();
+		Vector2D normalizedX = (x - cellCenterOrigin) / GetGridSpacing();
 
-		GetBarycentric(normalizedX.x, 0, static_cast<ssize_t>(Resolution().x) - 1, &i, &fx);
-		GetBarycentric(normalizedX.y, 0, static_cast<ssize_t>(Resolution().y) - 1, &j, &fy);
+		GetBarycentric(normalizedX.x, 0, static_cast<ssize_t>(GetResolution().x) - 1, &i, &fx);
+		GetBarycentric(normalizedX.y, 0, static_cast<ssize_t>(GetResolution().y) - 1, &j, &fy);
 
 		std::array<Point2UI, 4> indices;
 		std::array<double, 4> weights;
@@ -395,8 +395,8 @@ namespace CubbyFlow
 
 	void FaceCenteredGrid2::ResetSampler()
 	{
-		LinearArraySampler2<double, double> uSampler(m_dataU.ConstAccessor(), GridSpacing(), m_dataOriginU);
-		LinearArraySampler2<double, double> vSampler(m_dataV.ConstAccessor(), GridSpacing(), m_dataOriginV);
+		LinearArraySampler2<double, double> uSampler(m_dataU.ConstAccessor(), GetGridSpacing(), m_dataOriginU);
+		LinearArraySampler2<double, double> vSampler(m_dataV.ConstAccessor(), GetGridSpacing(), m_dataOriginV);
 
 		m_uLinearSampler = uSampler;
 		m_vLinearSampler = vSampler;

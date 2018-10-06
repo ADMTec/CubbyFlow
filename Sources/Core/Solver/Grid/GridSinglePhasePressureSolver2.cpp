@@ -26,8 +26,8 @@ namespace CubbyFlow
 			const Array2<char>& markers,
 			const FaceCenteredGrid2& input)
 		{
-			Size2 size = input.Resolution();
-			const Vector2D invH = 1.0 / input.GridSpacing();
+			Size2 size = input.GetResolution();
+			const Vector2D invH = 1.0 / input.GetGridSpacing();
 			Vector2D invHSqr = invH * invH;
 
 			A->ParallelForEachIndex([&](size_t i, size_t j)
@@ -81,8 +81,8 @@ namespace CubbyFlow
 			const Array2<char>& markers,
 			const FaceCenteredGrid2& input)
 		{
-			Size2 size = input.Resolution();
-			const Vector2D invH = 1.0 / input.GridSpacing();
+			Size2 size = input.GetResolution();
+			const Vector2D invH = 1.0 / input.GetGridSpacing();
 			Vector2D invHSqr = invH * invH;
 
 			const auto markerAcc = markers.ConstAccessor();
@@ -191,9 +191,9 @@ namespace CubbyFlow
 		UNUSED_VARIABLE(timeIntervalInSeconds);
 		UNUSED_VARIABLE(boundaryVelocity);
 
-		const auto pos = input.CellCenterPosition();
+		const auto pos = input.GetCellCenterPosition();
 		
-		BuildMarkers(input.Resolution(), pos, boundarySDF, fluidSDF);
+		BuildMarkers(input.GetResolution(), pos, boundarySDF, fluidSDF);
 		BuildSystem(input, useCompressed);
 
 		if (m_systemSolver != nullptr)
@@ -366,7 +366,7 @@ namespace CubbyFlow
 
 	void GridSinglePhasePressureSolver2::BuildSystem(const FaceCenteredGrid2& input, bool useCompressed)
 	{
-		const Size2 size = input.Resolution();
+		const Size2 size = input.GetResolution();
 		size_t numLevels = 1;
 
 		if (m_mgSystemSolver == nullptr)
@@ -409,9 +409,9 @@ namespace CubbyFlow
 		FaceCenteredGrid2 coarser;
 		for (size_t l = 1; l < numLevels; ++l)
 		{
-			auto res = finer->Resolution();
-			auto h = finer->GridSpacing();
-			const auto o = finer->Origin();
+			auto res = finer->GetResolution();
+			auto h = finer->GetGridSpacing();
+			const auto o = finer->GetOrigin();
 			res.x = res.x >> 1;
 			res.y = res.y >> 1;
 			h *= 2.0;
@@ -428,7 +428,7 @@ namespace CubbyFlow
 
 	void GridSinglePhasePressureSolver2::ApplyPressureGradient(const FaceCenteredGrid2& input, FaceCenteredGrid2* output)
 	{
-		Size2 size = input.Resolution();
+		Size2 size = input.GetResolution();
 		auto u = input.GetUConstAccessor();
 		auto v = input.GetVConstAccessor();
 		auto u0 = output->GetUAccessor();
@@ -436,7 +436,7 @@ namespace CubbyFlow
 
 		const auto& x = GetPressure();
 
-		Vector2D invH = 1.0 / input.GridSpacing();
+		Vector2D invH = 1.0 / input.GetGridSpacing();
 
 		x.ParallelForEachIndex([&](size_t i, size_t j)
 		{

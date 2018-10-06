@@ -27,7 +27,7 @@ namespace CubbyFlow
 		GridFractionalBoundaryConditionSolver2::ConstrainVelocity(velocity, extrapolationDepth);
 
 		// No-flux: project the velocity at the marker interface
-		Size2 size = velocity->Resolution();
+		Size2 size = velocity->GetResolution();
 		auto u = velocity->GetUAccessor();
 		auto v = velocity->GetVAccessor();
 		auto uPos = velocity->GetUPosition();

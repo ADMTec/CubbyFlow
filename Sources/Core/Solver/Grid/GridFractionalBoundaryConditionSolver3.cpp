@@ -28,11 +28,11 @@ namespace CubbyFlow
 
 	void GridFractionalBoundaryConditionSolver3::ConstrainVelocity(FaceCenteredGrid3* velocity, unsigned int extrapolationDepth)
 	{
-		Size3 size = velocity->Resolution();
+		Size3 size = velocity->GetResolution();
 
-		if (m_colliderSDF == nullptr || m_colliderSDF->Resolution() != size)
+		if (m_colliderSDF == nullptr || m_colliderSDF->GetResolution() != size)
 		{
-			UpdateCollider(GetCollider(), size, velocity->GridSpacing(), velocity->Origin());
+			UpdateCollider(GetCollider(), size, velocity->GetGridSpacing(), velocity->GetOrigin());
 		}
 
 		auto u = velocity->GetUAccessor();
@@ -49,7 +49,7 @@ namespace CubbyFlow
 		Array3<char> vMarker(v.size(), 1);
 		Array3<char> wMarker(w.size(), 1);
 
-		Vector3D h = velocity->GridSpacing();
+		Vector3D h = velocity->GetGridSpacing();
 
 		// Assign collider's velocity first and initialize markers
 		velocity->ParallelForEachUIndex([&](size_t i, size_t j, size_t k)

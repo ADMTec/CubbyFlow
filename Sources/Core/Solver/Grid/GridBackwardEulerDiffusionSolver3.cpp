@@ -32,7 +32,7 @@ namespace CubbyFlow
 		const ScalarField3& fluidSDF)
 	{
 		auto pos = source.GetDataPosition();
-		Vector3D h = source.GridSpacing();
+		Vector3D h = source.GetGridSpacing();
 		Vector3D c = timeIntervalInSeconds * diffusionCoefficient / (h * h);
 
 		BuildMarkers(source.GetDataSize(), pos, boundarySDF, fluidSDF);
@@ -62,7 +62,7 @@ namespace CubbyFlow
 		const ScalarField3& fluidSDF)
 	{
 		auto pos = source.GetDataPosition();
-		Vector3D h = source.GridSpacing();
+		Vector3D h = source.GetGridSpacing();
 		Vector3D c = timeIntervalInSeconds * diffusionCoefficient / (h * h);
 
 		BuildMarkers(source.GetDataSize(), pos, boundarySDF, fluidSDF);
@@ -125,7 +125,7 @@ namespace CubbyFlow
 		const ScalarField3& boundarySDF,
 		const ScalarField3& fluidSDF)
 	{
-		Vector3D h = source.GridSpacing();
+		Vector3D h = source.GetGridSpacing();
 		Vector3D c = timeIntervalInSeconds * diffusionCoefficient / (h * h);
 
 		// u

@@ -48,8 +48,8 @@ CUBBYFLOW_BEGIN_TEST_F(MarchingCubes, FourCubes)
 
 	MarchingCubes(
 		grid.GetConstDataAccessor(),
-		grid.GridSpacing(),
-		grid.Origin(),
+		grid.GetGridSpacing(),
+		grid.GetOrigin(),
 		&triMesh,
 		0,
 		DIRECTION_ALL);
@@ -70,8 +70,8 @@ CUBBYFLOW_BEGIN_TEST_F(MarchingCubes, Sphere)
 
 	MarchingCubes(
 		grid.GetConstDataAccessor(),
-		grid.GridSpacing(),
-		grid.Origin(),
+		grid.GetGridSpacing(),
+		grid.GetOrigin(),
 		&triMesh,
 		0,
 		DIRECTION_ALL);
@@ -87,8 +87,8 @@ CUBBYFLOW_BEGIN_TEST_F(MarchingCubes, Sphere)
 
 	MarchingCubes(
 		grid.GetConstDataAccessor(),
-		grid.GridSpacing(),
-		grid.Origin(),
+		grid.GetGridSpacing(),
+		grid.GetOrigin(),
 		&triMesh,
 		0,
 		DIRECTION_ALL);
@@ -104,8 +104,8 @@ CUBBYFLOW_BEGIN_TEST_F(MarchingCubes, Sphere)
 
 	MarchingCubes(
 		grid.GetConstDataAccessor(),
-		grid.GridSpacing(),
-		grid.Origin(),
+		grid.GetGridSpacing(),
+		grid.GetOrigin(),
 		&triMesh,
 		0,
 		DIRECTION_ALL);

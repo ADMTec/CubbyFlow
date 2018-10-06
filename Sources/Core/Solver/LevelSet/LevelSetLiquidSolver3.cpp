@@ -67,7 +67,7 @@ namespace CubbyFlow
 	double LevelSetLiquidSolver3::ComputeVolume() const
 	{
 		auto sdf = GetSignedDistanceField();
-		const Vector3D gridSpacing = sdf->GridSpacing();
+		const Vector3D gridSpacing = sdf->GetGridSpacing();
 		const double cellVolume = gridSpacing.x * gridSpacing.y * gridSpacing.z;
 		const double h = gridSpacing.Max();
 
@@ -140,7 +140,7 @@ namespace CubbyFlow
 			auto sdf = GetSignedDistanceField();
 			auto sdf0 = sdf->Clone();
 
-			const Vector3D gridSpacing = sdf->GridSpacing();
+			const Vector3D gridSpacing = sdf->GetGridSpacing();
 			const double h = gridSpacing.Max();
 			const double maxReinitDist = std::max(2.0 * currentCfl, m_minReinitializeDistance) * h;
 
@@ -206,7 +206,7 @@ namespace CubbyFlow
 			}
 		});
 
-		const Vector3D gridSpacing = sdf->GridSpacing();
+		const Vector3D gridSpacing = sdf->GetGridSpacing();
 		const double h = gridSpacing.Max();
 		const double maxDist = std::max(2.0 * currentCFL, m_minReinitializeDistance) * h;
 
@@ -221,7 +221,7 @@ namespace CubbyFlow
 	void LevelSetLiquidSolver3::AddVolume(double volDiff)
 	{
 		auto sdf = GetSignedDistanceField();
-		const Vector3D gridSpacing = sdf->GridSpacing();
+		const Vector3D gridSpacing = sdf->GetGridSpacing();
 		const double cellVolume = gridSpacing.x * gridSpacing.y * gridSpacing.z;
 		const double h = gridSpacing.Max();
 

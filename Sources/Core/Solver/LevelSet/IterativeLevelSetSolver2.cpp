@@ -30,7 +30,7 @@ namespace CubbyFlow
 		ScalarGrid2* outputSDF)
 	{
 		const Size2 size = inputSDF.GetDataSize();
-		const Vector2D gridSpacing = inputSDF.GridSpacing();
+		const Vector2D gridSpacing = inputSDF.GetGridSpacing();
 
 		if (!inputSDF.HasSameShape(*outputSDF))
 		{
@@ -101,7 +101,7 @@ namespace CubbyFlow
 		Extrapolate(
 			input.GetConstDataAccessor(),
 			sdfGrid.ConstAccessor(),
-			input.GridSpacing(),
+			input.GetGridSpacing(),
 			maxDistance,
 			output->GetDataAccessor());
 	}
@@ -124,7 +124,7 @@ namespace CubbyFlow
 			sdfGrid(i, j) = sdf.Sample(pos(i, j));
 		});
 
-		const Vector2D gridSpacing = input.GridSpacing();
+		const Vector2D gridSpacing = input.GetGridSpacing();
 
 		Array2<double> u(input.GetDataSize());
 		Array2<double> u0(input.GetDataSize());
@@ -158,7 +158,7 @@ namespace CubbyFlow
 			throw std::invalid_argument("inputSDF and outputSDF have not same shape.");
 		}
 
-		const Vector2D gridSpacing = input.GridSpacing();
+		const Vector2D gridSpacing = input.GetGridSpacing();
 
 		auto u = input.GetUConstAccessor();
 		auto uPos = input.GetUPosition();

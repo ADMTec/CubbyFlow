@@ -34,7 +34,7 @@ namespace CubbyFlow
 		if (m_systemSolver != nullptr)
 		{
 			auto pos = source.GetDataPosition();
-			Vector2D h = source.GridSpacing();
+			Vector2D h = source.GetGridSpacing();
 			Vector2D c = timeIntervalInSeconds * diffusionCoefficient / (h * h);
 
 			BuildMarkers(source.GetDataSize(), pos, boundarySDF, fluidSDF);
@@ -64,7 +64,7 @@ namespace CubbyFlow
 		if (m_systemSolver != nullptr)
 		{
 			auto pos = source.GetDataPosition();
-			Vector2D h = source.GridSpacing();
+			Vector2D h = source.GetGridSpacing();
 			Vector2D c = timeIntervalInSeconds * diffusionCoefficient / (h * h);
 
 			BuildMarkers(source.GetDataSize(), pos, boundarySDF, fluidSDF);
@@ -108,7 +108,7 @@ namespace CubbyFlow
 	{
 		if (m_systemSolver != nullptr)
 		{
-			Vector2D h = source.GridSpacing();
+			Vector2D h = source.GetGridSpacing();
 			Vector2D c = timeIntervalInSeconds * diffusionCoefficient / (h * h);
 
 			// u

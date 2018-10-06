@@ -64,7 +64,7 @@ namespace CubbyFlow
 	{
 		for (const auto& grid : gridList)
 		{
-			auto type = builder->CreateString(grid->TypeName());
+			auto type = builder->CreateString(grid->GetTypeName());
 
 			std::vector<uint8_t> gridSerialized;
 			grid->Serialize(&gridSerialized);

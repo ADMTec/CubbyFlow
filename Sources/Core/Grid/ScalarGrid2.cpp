@@ -29,7 +29,7 @@ namespace CubbyFlow
 
 	void ScalarGrid2::Clear()
 	{
-		Resize(Size2(), GridSpacing(), Origin(), 0.0);
+		Resize(Size2(), GetGridSpacing(), GetOrigin(), 0.0);
 	}
 
 	void ScalarGrid2::Resize(
@@ -68,7 +68,7 @@ namespace CubbyFlow
 
 	void ScalarGrid2::Resize(const Vector2D& gridSpacing, const Vector2D& origin)
 	{
-		Resize(Resolution(), gridSpacing, origin);
+		Resize(GetResolution(), gridSpacing, origin);
 	}
 
 	const double& ScalarGrid2::operator()(size_t i, size_t j) const
@@ -83,12 +83,12 @@ namespace CubbyFlow
 
 	Vector2D ScalarGrid2::GradientAtDataPoint(size_t i, size_t j) const
 	{
-		return Gradient2(m_data.ConstAccessor(), GridSpacing(), i, j);
+		return Gradient2(m_data.ConstAccessor(), GetGridSpacing(), i, j);
 	}
 
 	double ScalarGrid2::LaplacianAtDataPoint(size_t i, size_t j) const
 	{
-		return Laplacian2(m_data.ConstAccessor(), GridSpacing(), i, j);
+		return Laplacian2(m_data.ConstAccessor(), GetGridSpacing(), i, j);
 	}
 
 	double ScalarGrid2::Sample(const Vector2D& x) const
@@ -149,7 +149,7 @@ namespace CubbyFlow
 
 		return [this, o](size_t i, size_t j) -> Vector2D
 		{
-			return o + GridSpacing() * Vector2D({ i, j });
+			return o + GetGridSpacing() * Vector2D({ i, j });
 		};
 	}
 
@@ -191,9 +191,9 @@ namespace CubbyFlow
 	{
 		flatbuffers::FlatBufferBuilder builder(1024);
 
-		auto fbsResolution = CubbyFlowToFlatbuffers(Resolution());
-		auto fbsGridSpacing = CubbyFlowToFlatbuffers(GridSpacing());
-		auto fbsOrigin = CubbyFlowToFlatbuffers(Origin());
+		auto fbsResolution = CubbyFlowToFlatbuffers(GetResolution());
+		auto fbsGridSpacing = CubbyFlowToFlatbuffers(GetGridSpacing());
+		auto fbsOrigin = CubbyFlowToFlatbuffers(GetOrigin());
 
 		std::vector<double> gridData;
 		GetData(&gridData);
@@ -246,7 +246,7 @@ namespace CubbyFlow
 	void ScalarGrid2::ResetSampler()
 	{
 		m_linearSampler = LinearArraySampler2<double, double>(
-			m_data.ConstAccessor(), GridSpacing(), GetDataOrigin());
+			m_data.ConstAccessor(), GetGridSpacing(), GetDataOrigin());
 		m_sampler = m_linearSampler.Functor();
 	}
 

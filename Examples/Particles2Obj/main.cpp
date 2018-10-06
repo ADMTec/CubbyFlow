@@ -64,7 +64,7 @@ void TriangulateAndSave(const ScalarGrid3& sdf, const std::string& objFileName)
     TriangleMesh3 mesh;
     MarchingCubes(
         sdf.GetConstDataAccessor(),
-        sdf.GridSpacing(),
+        sdf.GetGridSpacing(),
         sdf.GetDataOrigin(),
         &mesh,
         0.0,
@@ -125,7 +125,7 @@ void ParticlesToObj(
     }
 
     VertexCenteredScalarGrid3 sdf(resolution, gridSpacing, origin);
-    PrintInfo(resolution, sdf.BoundingBox(), gridSpacing, positions.size(), method);
+    PrintInfo(resolution, sdf.GetBoundingBox(), gridSpacing, positions.size(), method);
 
     converter->Convert(positions, &sdf);
 

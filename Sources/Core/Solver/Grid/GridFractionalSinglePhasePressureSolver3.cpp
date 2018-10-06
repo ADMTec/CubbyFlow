@@ -136,12 +136,12 @@ namespace CubbyFlow
 			std::function<Vector3D(const Vector3D&)> boundaryVel,
 			const FaceCenteredGrid3& input)
 		{
-			const Size3 size = input.Resolution();
+			const Size3 size = input.GetResolution();
 			const auto uPos = input.GetUPosition();
 			const auto vPos = input.GetVPosition();
 			const auto wPos = input.GetWPosition();
 
-			const Vector3D invH = 1.0 / input.GridSpacing();
+			const Vector3D invH = 1.0 / input.GetGridSpacing();
 			const Vector3D invHSqr = invH * invH;
 
 			// Build linear system
@@ -332,12 +332,12 @@ namespace CubbyFlow
 			std::function<Vector3D(const Vector3D&)> boundaryVel,
 			const FaceCenteredGrid3& input)
 		{
-			const Size3 size = input.Resolution();
+			const Size3 size = input.GetResolution();
 			const auto uPos = input.GetUPosition();
 			const auto vPos = input.GetVPosition();
 			const auto wPos = input.GetWPosition();
 
-			const Vector3D invH = 1.0 / input.GridSpacing();
+			const Vector3D invH = 1.0 / input.GetGridSpacing();
 			const Vector3D invHSqr = invH * invH;
 
 			const auto fluidSDFAcc = fluidSDF.ConstAccessor();
@@ -643,7 +643,7 @@ namespace CubbyFlow
 		const VectorField3& boundaryVelocity,
 		const ScalarField3& fluidSDF)
 	{
-		const auto size = input.Resolution();
+		const auto size = input.GetResolution();
 
 		// Build levels
 		size_t maxLevels = 1;
@@ -664,12 +664,12 @@ namespace CubbyFlow
 		}
 
 		// Build top-level grids
-		auto cellPos = input.CellCenterPosition();
+		auto cellPos = input.GetCellCenterPosition();
 		auto uPos = input.GetUPosition();
 		auto vPos = input.GetVPosition();
 		auto wPos = input.GetWPosition();
 		m_boundaryVel = boundaryVelocity.Sampler();
-		Vector3D h = input.GridSpacing();
+		Vector3D h = input.GetGridSpacing();
 
 		m_fluidSDF[0].ParallelForEachIndex([&](size_t i, size_t j, size_t k)
 		{
@@ -774,7 +774,7 @@ namespace CubbyFlow
 
 	void GridFractionalSinglePhasePressureSolver3::BuildSystem(const FaceCenteredGrid3& input, bool useCompressed)
 	{
-		const Size3 size = input.Resolution();
+		const Size3 size = input.GetResolution();
 		size_t numLevels = 1;
 
 		if (m_mgSystemSolver == nullptr)
@@ -826,9 +826,9 @@ namespace CubbyFlow
 		FaceCenteredGrid3 coarser;
 		for (size_t l = 1; l < numLevels; ++l)
 		{
-			auto res = finer->Resolution();
-			auto h = finer->GridSpacing();
-			const auto o = finer->Origin();
+			auto res = finer->GetResolution();
+			auto h = finer->GetGridSpacing();
+			const auto o = finer->GetOrigin();
 			res.x = res.x >> 1;
 			res.y = res.y >> 1;
 			res.z = res.z >> 1;
@@ -849,7 +849,7 @@ namespace CubbyFlow
 
 	void GridFractionalSinglePhasePressureSolver3::ApplyPressureGradient(const FaceCenteredGrid3& input, FaceCenteredGrid3* output)
 	{
-		Size3 size = input.Resolution();
+		Size3 size = input.GetResolution();
 		auto u = input.GetUConstAccessor();
 		auto v = input.GetVConstAccessor();
 		auto w = input.GetWConstAccessor();
@@ -859,7 +859,7 @@ namespace CubbyFlow
 
 		const auto& x = GetPressure();
 
-		Vector3D invH = 1.0 / input.GridSpacing();
+		Vector3D invH = 1.0 / input.GetGridSpacing();
 
 		x.ParallelForEachIndex([&](size_t i, size_t j, size_t k)
 		{

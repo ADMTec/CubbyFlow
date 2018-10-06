@@ -38,7 +38,7 @@ CUBBYFLOW_BEGIN_TEST_F(SemiLagrangian2, Boundary)
 		return Vector2D(0.5, 0.5).DistanceTo(pt) - 0.25;
 	});
 
-	Array3<double> data(3, src.Resolution().x, src.Resolution().y);
+	Array3<double> data(3, src.GetResolution().x, src.GetResolution().y);
 	data.ForEachIndex([&](size_t i, size_t j, size_t k)
 	{
 		if (i < 2)

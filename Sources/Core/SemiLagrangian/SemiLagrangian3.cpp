@@ -29,7 +29,7 @@ namespace CubbyFlow
 		const ScalarField3& boundarySDF)
 	{
 		auto inputSamplerFunc = GetScalarSamplerFunc(input);
-		double h = std::min(output->GridSpacing().x, output->GridSpacing().y);
+		double h = std::min(output->GetGridSpacing().x, output->GetGridSpacing().y);
 
 		auto inputDataPos = input.GetDataPosition();
 		auto outputDataPos = output->GetDataPosition();
@@ -53,7 +53,7 @@ namespace CubbyFlow
 		const ScalarField3& boundarySDF)
 	{
 		auto inputSamplerFunc = GetVectorSamplerFunc(input);
-		double h = std::min(output->GridSpacing().x, output->GridSpacing().y);
+		double h = std::min(output->GetGridSpacing().x, output->GetGridSpacing().y);
 
 		auto inputDataPos = input.GetDataPosition();
 		auto outputDataPos = output->GetDataPosition();
@@ -77,7 +77,7 @@ namespace CubbyFlow
 		const ScalarField3& boundarySDF)
 	{
 		auto inputSamplerFunc = GetVectorSamplerFunc(input);
-		double h = std::min(output->GridSpacing().x, output->GridSpacing().y);
+		double h = std::min(output->GetGridSpacing().x, output->GetGridSpacing().y);
 
 		auto uSourceDataPos = input.GetUPosition();
 		auto uTargetDataPos = output->GetUPosition();

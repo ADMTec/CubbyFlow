@@ -36,7 +36,7 @@ namespace CubbyFlow
 
 		m_customImplicitSurface = CustomImplicitSurface3::Builder()
 			.WithSignedDistanceFunction([&](const Vector3D& pt) -> double { return m_grid->Sample(pt); })
-			.WithDomain(m_grid->BoundingBox())
+			.WithDomain(m_grid->GetBoundingBox())
 			.WithResolution(dx)
 			.MakeShared();
 	}

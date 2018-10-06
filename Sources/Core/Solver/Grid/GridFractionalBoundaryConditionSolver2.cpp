@@ -30,11 +30,11 @@ namespace CubbyFlow
 		FaceCenteredGrid2* velocity,
 		unsigned int extrapolationDepth)
 	{
-		Size2 size = velocity->Resolution();
+		Size2 size = velocity->GetResolution();
 
-		if (m_colliderSDF == nullptr || m_colliderSDF->Resolution() != size)
+		if (m_colliderSDF == nullptr || m_colliderSDF->GetResolution() != size)
 		{
-			UpdateCollider(GetCollider(), size, velocity->GridSpacing(), velocity->Origin());
+			UpdateCollider(GetCollider(), size, velocity->GetGridSpacing(), velocity->GetOrigin());
 		}
 
 		auto u = velocity->GetUAccessor();
@@ -47,7 +47,7 @@ namespace CubbyFlow
 		Array2<char> uMarker(u.size(), 1);
 		Array2<char> vMarker(v.size(), 1);
 
-		Vector2D h = velocity->GridSpacing();
+		Vector2D h = velocity->GetGridSpacing();
 
 		// Assign collider's velocity first and initialize markers
 		velocity->ParallelForEachUIndex([&](size_t i, size_t j)

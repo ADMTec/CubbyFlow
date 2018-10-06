@@ -75,7 +75,7 @@ namespace CubbyFlow
 		Array3<size_t>* closestTri)
 	{
 		Size3 size = sdf->GetDataSize();
-		Vector3D h = sdf->GridSpacing();
+		Vector3D h = sdf->GetGridSpacing();
 		Vector3D origin = sdf->GetDataOrigin();
 
 		ssize_t ni = static_cast<ssize_t>(size.x);
@@ -233,8 +233,8 @@ namespace CubbyFlow
 		}
 
 		// Upper bound on distance
-		sdf->Fill(sdf->BoundingBox().DiagonalLength());
-		Vector3D h = sdf->GridSpacing();
+		sdf->Fill(sdf->GetBoundingBox().DiagonalLength());
+		Vector3D h = sdf->GetGridSpacing();
 		Vector3D origin = sdf->GetDataOrigin();
 
 		Array3<size_t> closestTri(size, std::numeric_limits<size_t>::max());

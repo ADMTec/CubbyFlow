@@ -83,10 +83,10 @@ namespace CubbyFlow
 		const ScalarField3& fluidSDF)
 	{
 		auto src = source.GetConstDataAccessor();
-		Vector3D h = source.GridSpacing();
+		Vector3D h = source.GetGridSpacing();
 		auto pos = source.GetDataPosition();
 
-		BuildMarkers(source.Resolution(), pos, boundarySDF, fluidSDF);
+		BuildMarkers(source.GetResolution(), pos, boundarySDF, fluidSDF);
 
 		source.ParallelForEachDataPointIndex([&](size_t i, size_t j, size_t k)
 		{
@@ -110,10 +110,10 @@ namespace CubbyFlow
 		const ScalarField3& fluidSDF)
 	{
 		auto src = source.GetConstDataAccessor();
-		Vector3D h = source.GridSpacing();
+		Vector3D h = source.GetGridSpacing();
 		auto pos = source.GetDataPosition();
 
-		BuildMarkers(source.Resolution(), pos, boundarySDF, fluidSDF);
+		BuildMarkers(source.GetResolution(), pos, boundarySDF, fluidSDF);
 
 		source.ParallelForEachDataPointIndex([&](size_t i, size_t j, size_t k)
 		{
@@ -145,7 +145,7 @@ namespace CubbyFlow
 		auto uPos = source.GetUPosition();
 		auto vPos = source.GetVPosition();
 		auto wPos = source.GetWPosition();
-		Vector3D h = source.GridSpacing();
+		Vector3D h = source.GetGridSpacing();
 
 		BuildMarkers(source.GetUSize(), uPos, boundarySDF, fluidSDF);
 

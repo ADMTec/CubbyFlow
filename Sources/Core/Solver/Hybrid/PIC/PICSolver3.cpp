@@ -149,15 +149,15 @@ namespace CubbyFlow
 		m_wMarkers.Set(0);
 		LinearArraySampler3<double, double> uSampler(
 			flow->GetUConstAccessor(),
-			flow->GridSpacing(),
+			flow->GetGridSpacing(),
 			flow->GetUOrigin());
 		LinearArraySampler3<double, double> vSampler(
 			flow->GetVConstAccessor(),
-			flow->GridSpacing(),
+			flow->GetGridSpacing(),
 			flow->GetVOrigin());
 		LinearArraySampler3<double, double> wSampler(
 			flow->GetWConstAccessor(),
-			flow->GridSpacing(),
+			flow->GetGridSpacing(),
 			flow->GetWOrigin());
 		for (size_t i = 0; i < numberOfParticles; ++i)
 		{
@@ -232,7 +232,7 @@ namespace CubbyFlow
 		auto velocities = m_particles->GetVelocities();
 		size_t numberOfParticles = m_particles->GetNumberOfParticles();
 		int domainBoundaryFlag = GetClosedDomainBoundaryFlag();
-		BoundingBox3D boundingBox = flow->BoundingBox();
+		BoundingBox3D boundingBox = flow->GetBoundingBox();
 
 		ParallelFor(ZERO_SIZE, numberOfParticles, [&](size_t i)
 		{
@@ -317,7 +317,7 @@ namespace CubbyFlow
 	{
 		auto sdf = GetSignedDistanceField();
 		auto sdfPos = sdf->GetDataPosition();
-		double maxH = std::max({ sdf->GridSpacing().x, sdf->GridSpacing().y, sdf->GridSpacing().z });
+		double maxH = std::max({ sdf->GetGridSpacing().x, sdf->GetGridSpacing().y, sdf->GetGridSpacing().z });
 		double radius = 1.2 * maxH / std::sqrt(2.0);
 		double sdfBandRadius = 2.0 * radius;
 

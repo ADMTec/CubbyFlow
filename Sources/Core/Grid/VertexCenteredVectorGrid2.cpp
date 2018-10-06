@@ -45,9 +45,9 @@ namespace CubbyFlow
 
 	Size2 VertexCenteredVectorGrid2::GetDataSize() const
 	{
-		if (Resolution() != Size2(0, 0))
+		if (GetResolution() != Size2(0, 0))
 		{
-			return Resolution() + Size2(1, 1);
+			return GetResolution() + Size2(1, 1);
 		}
 
 		return Size2(0, 0);
@@ -55,7 +55,7 @@ namespace CubbyFlow
 
 	Vector2D VertexCenteredVectorGrid2::GetDataOrigin() const
 	{
-		return Origin();
+		return GetOrigin();
 	}
 
 	void VertexCenteredVectorGrid2::Swap(Grid2* other)

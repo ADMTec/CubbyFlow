@@ -27,7 +27,7 @@ CUBBYFLOW_BEGIN_TEST_F(GridForwardEulerDiffusionSolver3, Solve)
 
 	src.Fill([&](const Vector3D& x)
 	{
-		return (x.DistanceTo(src.BoundingBox().MidPoint()) < 0.2) ? 1.0 : 0.0;
+		return (x.DistanceTo(src.GetBoundingBox().MidPoint()) < 0.2) ? 1.0 : 0.0;
 	});
 
 	data.ForEachIndex([&](size_t i, size_t j)
@@ -65,7 +65,7 @@ CUBBYFLOW_BEGIN_TEST_F(GridForwardEulerDiffusionSolver3, Unstable)
 
 	src.Fill([&](const Vector3D& x)
 	{
-		return (x.DistanceTo(src.BoundingBox().MidPoint()) < 0.2) ? 1.0 : 0.0;
+		return (x.DistanceTo(src.GetBoundingBox().MidPoint()) < 0.2) ? 1.0 : 0.0;
 	});
 
 	data.ForEachIndex([&](size_t i, size_t j)
@@ -105,7 +105,7 @@ CUBBYFLOW_BEGIN_TEST_F(GridBackwardEulerDiffusionSolver2, Solve)
 
 	src.Fill([&](const Vector2D& x)
 	{
-		return (x.DistanceTo(src.BoundingBox().MidPoint()) < 0.2) ? 1.0 : 0.0;
+		return (x.DistanceTo(src.GetBoundingBox().MidPoint()) < 0.2) ? 1.0 : 0.0;
 	});
 
 	data.ForEachIndex([&](size_t i, size_t j)
@@ -122,7 +122,7 @@ CUBBYFLOW_BEGIN_TEST_F(GridBackwardEulerDiffusionSolver2, Solve)
 		ConstantScalarField2(std::numeric_limits<double>::max()),
 		CustomScalarField2([&](const Vector2D& pt)
 	{
-		Vector2D md = src.BoundingBox().MidPoint();
+		Vector2D md = src.GetBoundingBox().MidPoint();
 		return pt.x - md.x;
 	}));
 	dst.Swap(&src);
@@ -151,7 +151,7 @@ CUBBYFLOW_BEGIN_TEST_F(GridBackwardEulerDiffusionSolver3, Solve)
 
 	src.Fill([&](const Vector3D& x)
 	{
-		return (x.DistanceTo(src.BoundingBox().MidPoint()) < 0.2) ? 1.0 : 0.0;
+		return (x.DistanceTo(src.GetBoundingBox().MidPoint()) < 0.2) ? 1.0 : 0.0;
 	});
 
 	data.ForEachIndex([&](size_t i, size_t j)
@@ -189,7 +189,7 @@ CUBBYFLOW_BEGIN_TEST_F(GridBackwardEulerDiffusionSolver3, Stable)
 
 	src.Fill([&](const Vector3D& x)
 	{
-		return (x.DistanceTo(src.BoundingBox().MidPoint()) < 0.2) ? 1.0 : 0.0;
+		return (x.DistanceTo(src.GetBoundingBox().MidPoint()) < 0.2) ? 1.0 : 0.0;
 	});
 
 	data.ForEachIndex([&](size_t i, size_t j)
@@ -224,7 +224,7 @@ CUBBYFLOW_BEGIN_TEST_F(GridBackwardEulerDiffusionSolver3, SolveWithBoundaryDiric
 	CellCenteredScalarGrid3 src(size, gridSpacing);
 	CellCenteredScalarGrid3 dst(size, gridSpacing);
 
-	Vector3D boundaryCenter = src.BoundingBox().MidPoint();
+	Vector3D boundaryCenter = src.GetBoundingBox().MidPoint();
 	CustomScalarField3 boundarySDF([&](const Vector3D& x)
 	{
 		return boundaryCenter.x - x.x;
@@ -234,7 +234,7 @@ CUBBYFLOW_BEGIN_TEST_F(GridBackwardEulerDiffusionSolver3, SolveWithBoundaryDiric
 
 	src.Fill([&](const Vector3D& x)
 	{
-		return (x.DistanceTo(src.BoundingBox().MidPoint()) < 0.2) ? 1.0 : 0.0;
+		return (x.DistanceTo(src.GetBoundingBox().MidPoint()) < 0.2) ? 1.0 : 0.0;
 	});
 
 	data.ForEachIndex([&](size_t i, size_t j)
@@ -269,7 +269,7 @@ CUBBYFLOW_BEGIN_TEST_F(GridBackwardEulerDiffusionSolver3, SolveWithBoundaryNeuma
 	CellCenteredScalarGrid3 src(size, gridSpacing);
 	CellCenteredScalarGrid3 dst(size, gridSpacing);
 
-	Vector3D boundaryCenter = src.BoundingBox().MidPoint();
+	Vector3D boundaryCenter = src.GetBoundingBox().MidPoint();
 	CustomScalarField3 boundarySDF([&](const Vector3D& x)
 	{
 		return boundaryCenter.x - x.x;
@@ -279,7 +279,7 @@ CUBBYFLOW_BEGIN_TEST_F(GridBackwardEulerDiffusionSolver3, SolveWithBoundaryNeuma
 
 	src.Fill([&](const Vector3D& x)
 	{
-		return (x.DistanceTo(src.BoundingBox().MidPoint()) < 0.2) ? 1.0 : 0.0;
+		return (x.DistanceTo(src.GetBoundingBox().MidPoint()) < 0.2) ? 1.0 : 0.0;
 	});
 
 	data.ForEachIndex([&](size_t i, size_t j)

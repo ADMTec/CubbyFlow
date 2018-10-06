@@ -157,7 +157,7 @@ namespace CubbyFlow
 	{
 		assert(i < Resolution().x && j < Resolution().y && k < Resolution().z);
 
-		const Vector3D& gs = GridSpacing();
+		const Vector3D& gs = GetGridSpacing();
 
 		double leftU = m_dataU(i, j, k);
 		double rightU = m_dataU(i + 1, j, k);
@@ -174,8 +174,8 @@ namespace CubbyFlow
 
 	Vector3D FaceCenteredGrid3::CurlAtCellCenter(size_t i, size_t j, size_t k) const
 	{
-		const Size3& res = Resolution();
-		const Vector3D& gs = GridSpacing();
+		const Size3& res = GetResolution();
+		const Vector3D& gs = GetGridSpacing();
 
 		assert(i < res.x && j < res.y && k < res.z);
 
@@ -239,7 +239,7 @@ namespace CubbyFlow
 
 	VectorGrid3::DataPositionFunc FaceCenteredGrid3::GetUPosition() const
 	{
-		Vector3D h = GridSpacing();
+		Vector3D h = GetGridSpacing();
 
 		return [this, h](size_t i, size_t j, size_t k) -> Vector3D
 		{
@@ -249,7 +249,7 @@ namespace CubbyFlow
 
 	VectorGrid3::DataPositionFunc FaceCenteredGrid3::GetVPosition() const
 	{
-		Vector3D h = GridSpacing();
+		Vector3D h = GetGridSpacing();
 
 		return [this, h](size_t i, size_t j, size_t k) -> Vector3D
 		{
@@ -259,7 +259,7 @@ namespace CubbyFlow
 
 	VectorGrid3::DataPositionFunc FaceCenteredGrid3::GetWPosition() const
 	{
-		Vector3D h = GridSpacing();
+		Vector3D h = GetGridSpacing();
 
 		return [this, h](size_t i, size_t j, size_t k) -> Vector3D
 		{
@@ -411,11 +411,11 @@ namespace CubbyFlow
 
 	double FaceCenteredGrid3::Divergence(const Vector3D& x) const
 	{
-		Size3 res = Resolution();
+		Size3 res = GetResolution();
 		ssize_t i, j, k;
 		double fx, fy, fz;
-		Vector3D cellCenterOrigin = Origin() + 0.5 * GridSpacing();
-		Vector3D normalizedX = (x - cellCenterOrigin) / GridSpacing();
+		Vector3D cellCenterOrigin = GetOrigin() + 0.5 * GetGridSpacing();
+		Vector3D normalizedX = (x - cellCenterOrigin) / GetGridSpacing();
 
 		GetBarycentric(normalizedX.x, 0, static_cast<ssize_t>(res.x) - 1, &i, &fx);
 		GetBarycentric(normalizedX.y, 0, static_cast<ssize_t>(res.y) - 1, &j, &fy);
@@ -454,11 +454,11 @@ namespace CubbyFlow
 
 	Vector3D FaceCenteredGrid3::Curl(const Vector3D& x) const
 	{
-		Size3 res = Resolution();
+		Size3 res = GetResolution();
 		ssize_t i, j, k;
 		double fx, fy, fz;
-		Vector3D cellCenterOrigin = Origin() + 0.5 * GridSpacing();
-		Vector3D normalizedX = (x - cellCenterOrigin) / GridSpacing();
+		Vector3D cellCenterOrigin = GetOrigin() + 0.5 * GetGridSpacing();
+		Vector3D normalizedX = (x - cellCenterOrigin) / GetGridSpacing();
 
 		GetBarycentric(normalizedX.x, 0, static_cast<ssize_t>(res.x) - 1, &i, &fx);
 		GetBarycentric(normalizedX.y, 0, static_cast<ssize_t>(res.y) - 1, &j, &fy);
@@ -522,9 +522,9 @@ namespace CubbyFlow
 
 	void FaceCenteredGrid3::ResetSampler()
 	{
-		LinearArraySampler3<double, double> uSampler(m_dataU.ConstAccessor(), GridSpacing(), m_dataOriginU);
-		LinearArraySampler3<double, double> vSampler(m_dataV.ConstAccessor(), GridSpacing(), m_dataOriginV);
-		LinearArraySampler3<double, double> wSampler(m_dataW.ConstAccessor(), GridSpacing(), m_dataOriginW);
+		LinearArraySampler3<double, double> uSampler(m_dataU.ConstAccessor(), GetGridSpacing(), m_dataOriginU);
+		LinearArraySampler3<double, double> vSampler(m_dataV.ConstAccessor(), GetGridSpacing(), m_dataOriginV);
+		LinearArraySampler3<double, double> wSampler(m_dataW.ConstAccessor(), GetGridSpacing(), m_dataOriginW);
 
 		m_uLinearSampler = uSampler;
 		m_vLinearSampler = vSampler;

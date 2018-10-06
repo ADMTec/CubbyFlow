@@ -37,8 +37,8 @@ namespace CubbyFlow
         const auto positions = particles->GetPositions();
         auto velocities = particles->GetVelocities();
         const size_t numberOfParticles = particles->GetNumberOfParticles();
-        const auto hh = flow->GridSpacing() / 2.0;
-        const auto bbox = flow->BoundingBox();
+        const auto hh = flow->GetGridSpacing() / 2.0;
+        const auto bbox = flow->GetBoundingBox();
 
         // Allocate buffers
         m_cX.Resize(numberOfParticles);
@@ -67,15 +67,15 @@ namespace CubbyFlow
 
         LinearArraySampler3<double, double> uSampler(
             flow->GetUConstAccessor(),
-            flow->GridSpacing(),
+            flow->GetGridSpacing(),
             flow->GetUOrigin());
         LinearArraySampler3<double, double> vSampler(
             flow->GetVConstAccessor(),
-            flow->GridSpacing(),
+            flow->GetGridSpacing(),
             flow->GetVOrigin());
         LinearArraySampler3<double, double> wSampler(
             flow->GetWConstAccessor(),
-            flow->GridSpacing(),
+            flow->GetGridSpacing(),
             flow->GetWOrigin());
 
         for (size_t i = 0; i < numberOfParticles; ++i)
@@ -159,8 +159,8 @@ namespace CubbyFlow
         auto positions = particles->GetPositions();
         auto velocities = particles->GetVelocities();
         const size_t numberOfParticles = particles->GetNumberOfParticles();
-        const auto hh = flow->GridSpacing() / 2.0;
-        const auto bbox = flow->BoundingBox();
+        const auto hh = flow->GetGridSpacing() / 2.0;
+        const auto bbox = flow->GetBoundingBox();
 
         // Allocate buffers
         m_cX.Resize(numberOfParticles);
@@ -174,9 +174,9 @@ namespace CubbyFlow
         auto v = flow->GetVAccessor();
         auto w = flow->GetWAccessor();
 
-        LinearArraySampler3<double, double> uSampler(u, flow->GridSpacing(), flow->GetUOrigin());
-        LinearArraySampler3<double, double> vSampler(v, flow->GridSpacing(), flow->GetVOrigin());
-        LinearArraySampler3<double, double> wSampler(w, flow->GridSpacing(), flow->GetWOrigin());
+        LinearArraySampler3<double, double> uSampler(u, flow->GetGridSpacing(), flow->GetUOrigin());
+        LinearArraySampler3<double, double> vSampler(v, flow->GetGridSpacing(), flow->GetVOrigin());
+        LinearArraySampler3<double, double> wSampler(w, flow->GetGridSpacing(), flow->GetWOrigin());
 
         ParallelFor(ZERO_SIZE, numberOfParticles, [&](size_t i)
         {

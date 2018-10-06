@@ -46,12 +46,12 @@ namespace CubbyFlow
 	Size3 CellCenteredVectorGrid3::GetDataSize() const
 	{
 		// The size of the data should be the same as the grid resolution.
-		return Resolution();
+		return GetResolution();
 	}
 
 	Vector3D CellCenteredVectorGrid3::GetDataOrigin() const
 	{
-		return Origin() + 0.5 * GridSpacing();
+		return GetOrigin() + 0.5 * GetGridSpacing();
 	}
 
 	void CellCenteredVectorGrid3::Swap(Grid3* other)

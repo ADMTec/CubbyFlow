@@ -111,11 +111,11 @@ namespace CubbyFlow
 			std::function<Vector2D(const Vector2D&)> boundaryVel,
 			const FaceCenteredGrid2& input)
 		{
-			const Size2 size = input.Resolution();
+			const Size2 size = input.GetResolution();
 			const auto uPos = input.GetUPosition();
 			const auto vPos = input.GetVPosition();
 
-			const Vector2D invH = 1.0 / input.GridSpacing();
+			const Vector2D invH = 1.0 / input.GetGridSpacing();
 			const Vector2D invHSqr = invH * invH;
 
 			// Build linear system
@@ -256,11 +256,11 @@ namespace CubbyFlow
 			std::function<Vector2D(const Vector2D&)> boundaryVel,
 			const FaceCenteredGrid2& input)
 		{
-			const Size2 size = input.Resolution();
+			const Size2 size = input.GetResolution();
 			const auto uPos = input.GetUPosition();
 			const auto vPos = input.GetVPosition();
 
-			const Vector2D invH = 1.0 / input.GridSpacing();
+			const Vector2D invH = 1.0 / input.GetGridSpacing();
 			const Vector2D invHSqr = invH * invH;
 
 			const auto fluidSDFAcc = fluidSDF.ConstAccessor();
@@ -514,7 +514,7 @@ namespace CubbyFlow
 		const VectorField2& boundaryVelocity,
 		const ScalarField2& fluidSDF)
 	{
-		const auto size = input.Resolution();
+		const auto size = input.GetResolution();
 
 		// Build levels
 		size_t maxLevels = 1;
@@ -533,11 +533,11 @@ namespace CubbyFlow
 		}
 
 		// Build top-level grids
-		auto cellPos = input.CellCenterPosition();
+		auto cellPos = input.GetCellCenterPosition();
 		auto uPos = input.GetUPosition();
 		auto vPos = input.GetVPosition();
 		m_boundaryVel = boundaryVelocity.Sampler();
-		Vector2D h = input.GridSpacing();
+		Vector2D h = input.GetGridSpacing();
 
 		m_fluidSDF[0].ParallelForEachIndex([&](size_t i, size_t j)
 		{
@@ -615,7 +615,7 @@ namespace CubbyFlow
 
 	void GridFractionalSinglePhasePressureSolver2::BuildSystem(const FaceCenteredGrid2& input, bool useCompressed)
 	{
-		const Size2 size = input.Resolution();
+		const Size2 size = input.GetResolution();
 		size_t numLevels = 1;
 
 		if (m_mgSystemSolver == nullptr)
@@ -667,9 +667,9 @@ namespace CubbyFlow
 		FaceCenteredGrid2 coarser;
 		for (size_t l = 1; l < numLevels; ++l)
 		{
-			auto res = finer->Resolution();
-			auto h = finer->GridSpacing();
-			const auto o = finer->Origin();
+			auto res = finer->GetResolution();
+			auto h = finer->GetGridSpacing();
+			const auto o = finer->GetOrigin();
 			res.x = res.x >> 1;
 			res.y = res.y >> 1;
 			h *= 2.0;
@@ -689,7 +689,7 @@ namespace CubbyFlow
 
 	void GridFractionalSinglePhasePressureSolver2::ApplyPressureGradient(const FaceCenteredGrid2& input, FaceCenteredGrid2* output)
 	{
-		Size2 size = input.Resolution();
+		Size2 size = input.GetResolution();
 		auto u = input.GetUConstAccessor();
 		auto v = input.GetVConstAccessor();
 		auto u0 = output->GetUAccessor();
@@ -697,7 +697,7 @@ namespace CubbyFlow
 
 		const auto& x = GetPressure();
 
-		Vector2D invH = 1.0 / input.GridSpacing();
+		Vector2D invH = 1.0 / input.GetGridSpacing();
 
 		x.ParallelForEachIndex([&](size_t i, size_t j)
 		{

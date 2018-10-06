@@ -35,7 +35,7 @@ namespace CubbyFlow
 	double CollocatedVectorGrid2::DivergenceAtDataPoint(size_t i, size_t j) const
 	{
 		const Size2 ds = m_data.size();
-		const Vector2D& gs = GridSpacing();
+		const Vector2D& gs = GetGridSpacing();
 
 		assert(i < ds.x && j < ds.y);
 
@@ -52,7 +52,7 @@ namespace CubbyFlow
 	double CollocatedVectorGrid2::CurlAtDataPoint(size_t i, size_t j) const
 	{
 		const Size2 ds = m_data.size();
-		const Vector2D& gs = GridSpacing();
+		const Vector2D& gs = GetGridSpacing();
 
 		assert(i < ds.x && j < ds.y);
 
@@ -127,7 +127,7 @@ namespace CubbyFlow
 		Vector2D dataOrigin = GetDataOrigin();
 		return [this, dataOrigin](size_t i, size_t j) -> Vector2D
 		{
-			return dataOrigin + GridSpacing() * Vector2D({ i, j });
+			return dataOrigin + GetGridSpacing() * Vector2D({ i, j });
 		};
 	}
 
@@ -174,7 +174,7 @@ namespace CubbyFlow
 
 	void CollocatedVectorGrid2::ResetSampler()
 	{
-		m_linearSampler = LinearArraySampler2<Vector2D, double>(m_data.ConstAccessor(), GridSpacing(), GetDataOrigin());
+		m_linearSampler = LinearArraySampler2<Vector2D, double>(m_data.ConstAccessor(), GetGridSpacing(), GetDataOrigin());
 		m_sampler = m_linearSampler.Functor();
 	}
 

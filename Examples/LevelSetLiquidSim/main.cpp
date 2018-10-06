@@ -63,7 +63,7 @@ void TriangulateAndSave(const ScalarGrid3Ptr& sdf, const std::string& rootDir, i
     const int flag = DIRECTION_ALL & ~DIRECTION_DOWN;
     MarchingCubes(
         sdf->GetConstDataAccessor(),
-        sdf->GridSpacing(),
+        sdf->GetGridSpacing(),
         sdf->GetDataOrigin(),
         &mesh,
         0.0,

@@ -37,8 +37,8 @@ namespace CubbyFlow
         const auto positions = particles->GetPositions();
         auto velocities = particles->GetVelocities();
         const size_t numberOfParticles = particles->GetNumberOfParticles();
-        const auto hh = flow->GridSpacing() / 2.0;
-        const auto bbox = flow->BoundingBox();
+        const auto hh = flow->GetGridSpacing() / 2.0;
+        const auto bbox = flow->GetBoundingBox();
 
         // Allocate buffers
         m_cX.Resize(numberOfParticles);
@@ -61,11 +61,11 @@ namespace CubbyFlow
 
         LinearArraySampler2<double, double> uSampler(
             flow->GetUConstAccessor(),
-            flow->GridSpacing(),
+            flow->GetGridSpacing(),
             flow->GetUOrigin());
         LinearArraySampler2<double, double> vSampler(
             flow->GetVConstAccessor(),
-            flow->GridSpacing(),
+            flow->GetGridSpacing(),
             flow->GetVOrigin());
 
         for (size_t i = 0; i < numberOfParticles; ++i)
@@ -125,8 +125,8 @@ namespace CubbyFlow
         auto positions = particles->GetPositions();
         auto velocities = particles->GetVelocities();
         const size_t numberOfParticles = particles->GetNumberOfParticles();
-        const auto hh = flow->GridSpacing() / 2.0;
-        const auto bbox = flow->BoundingBox();
+        const auto hh = flow->GetGridSpacing() / 2.0;
+        const auto bbox = flow->GetBoundingBox();
 
         // Allocate buffers
         m_cX.Resize(numberOfParticles);
@@ -137,8 +137,8 @@ namespace CubbyFlow
         auto u = flow->GetUAccessor();
         auto v = flow->GetVAccessor();
 
-        LinearArraySampler2<double, double> uSampler(u, flow->GridSpacing(), flow->GetUOrigin());
-        LinearArraySampler2<double, double> vSampler(v, flow->GridSpacing(), flow->GetVOrigin());
+        LinearArraySampler2<double, double> uSampler(u, flow->GetGridSpacing(), flow->GetUOrigin());
+        LinearArraySampler2<double, double> vSampler(v, flow->GetGridSpacing(), flow->GetVOrigin());
 
         ParallelFor(ZERO_SIZE, numberOfParticles, [&](size_t i)
         {

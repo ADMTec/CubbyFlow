@@ -29,7 +29,7 @@ namespace CubbyFlow
 
 	void ScalarGrid3::Clear()
 	{
-		Resize(Size3(), GridSpacing(), Origin(), 0.0);
+		Resize(Size3(), GetGridSpacing(), GetOrigin(), 0.0);
 	}
 
 	void ScalarGrid3::Resize(
@@ -68,7 +68,7 @@ namespace CubbyFlow
 
 	void ScalarGrid3::Resize(const Vector3D& gridSpacing, const Vector3D& origin)
 	{
-		Resize(Resolution(), gridSpacing, origin);
+		Resize(GetResolution(), gridSpacing, origin);
 	}
 
 	const double& ScalarGrid3::operator()(size_t i, size_t j, size_t k) const
@@ -83,12 +83,12 @@ namespace CubbyFlow
 
 	Vector3D ScalarGrid3::GradientAtDataPoint(size_t i, size_t j, size_t k) const
 	{
-		return Gradient3(m_data.ConstAccessor(), GridSpacing(), i, j, k);
+		return Gradient3(m_data.ConstAccessor(), GetGridSpacing(), i, j, k);
 	}
 
 	double ScalarGrid3::LaplacianAtDataPoint(size_t i, size_t j, size_t k) const
 	{
-		return Laplacian3(m_data.ConstAccessor(), GridSpacing(), i, j, k);
+		return Laplacian3(m_data.ConstAccessor(), GetGridSpacing(), i, j, k);
 	}
 
 	double ScalarGrid3::Sample(const Vector3D& x) const
@@ -149,7 +149,7 @@ namespace CubbyFlow
 		
 		return [this, o](size_t i, size_t j, size_t k) -> Vector3D
 		{
-			return o + GridSpacing() * Vector3D({ i, j, k });
+			return o + GetGridSpacing() * Vector3D({ i, j, k });
 		};
 	}
 
@@ -193,9 +193,9 @@ namespace CubbyFlow
 	{
 		flatbuffers::FlatBufferBuilder builder(1024);
 
-		auto fbsResolution = CubbyFlowToFlatbuffers(Resolution());
-		auto fbsGridSpacing = CubbyFlowToFlatbuffers(GridSpacing());
-		auto fbsOrigin = CubbyFlowToFlatbuffers(Origin());
+		auto fbsResolution = CubbyFlowToFlatbuffers(GetResolution());
+		auto fbsGridSpacing = CubbyFlowToFlatbuffers(GetGridSpacing());
+		auto fbsOrigin = CubbyFlowToFlatbuffers(GetOrigin());
 
 		std::vector<double> gridData;
 		GetData(&gridData);
@@ -248,7 +248,7 @@ namespace CubbyFlow
 	void ScalarGrid3::ResetSampler()
 	{
 		m_linearSampler = LinearArraySampler3<double, double>(
-			m_data.ConstAccessor(), GridSpacing(), GetDataOrigin());
+			m_data.ConstAccessor(), GetGridSpacing(), GetDataOrigin());
 		m_sampler = m_linearSampler.Functor();
 	}
 

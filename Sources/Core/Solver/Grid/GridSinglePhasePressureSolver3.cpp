@@ -26,8 +26,8 @@ namespace CubbyFlow
 			const Array3<char>& markers,
 			const FaceCenteredGrid3& input)
 		{
-			Size3 size = input.Resolution();
-			const Vector3D invH = 1.0 / input.GridSpacing();
+			Size3 size = input.GetResolution();
+			const Vector3D invH = 1.0 / input.GetGridSpacing();
 			Vector3D invHSqr = invH * invH;
 
 			// Build linear system
@@ -96,8 +96,8 @@ namespace CubbyFlow
 			const Array3<char>& markers,
 			const FaceCenteredGrid3& input)
 		{
-			Size3 size = input.Resolution();
-			const Vector3D invH = 1.0 / input.GridSpacing();
+			Size3 size = input.GetResolution();
+			const Vector3D invH = 1.0 / input.GetGridSpacing();
 			Vector3D invHSqr = invH * invH;
 
 			const auto markerAcc = markers.ConstAccessor();
@@ -230,9 +230,9 @@ namespace CubbyFlow
 		UNUSED_VARIABLE(timeIntervalInSeconds);
 		UNUSED_VARIABLE(boundaryVelocity);
 
-		const auto pos = input.CellCenterPosition();
+		const auto pos = input.GetCellCenterPosition();
 
-		BuildMarkers(input.Resolution(), pos, boundarySDF, fluidSDF);
+		BuildMarkers(input.GetResolution(), pos, boundarySDF, fluidSDF);
 		BuildSystem(input, useCompressed);
 
 		if (m_systemSolver != nullptr)
@@ -418,7 +418,7 @@ namespace CubbyFlow
 
 	void GridSinglePhasePressureSolver3::BuildSystem(const FaceCenteredGrid3& input, bool useCompressed)
 	{
-		const Size3 size = input.Resolution();
+		const Size3 size = input.GetResolution();
 		size_t numLevels = 1;
 
 		if (m_mgSystemSolver == nullptr)
@@ -461,9 +461,9 @@ namespace CubbyFlow
 		FaceCenteredGrid3 coarser;
 		for (size_t l = 1; l < numLevels; ++l)
 		{
-			auto res = finer->Resolution();
-			auto h = finer->GridSpacing();
-			const auto o = finer->Origin();
+			auto res = finer->GetResolution();
+			auto h = finer->GetGridSpacing();
+			const auto o = finer->GetOrigin();
 			res.x = res.x >> 1;
 			res.y = res.y >> 1;
 			res.z = res.z >> 1;
@@ -481,7 +481,7 @@ namespace CubbyFlow
 
 	void GridSinglePhasePressureSolver3::ApplyPressureGradient(const FaceCenteredGrid3& input, FaceCenteredGrid3* output)
 	{
-		Size3 size = input.Resolution();
+		Size3 size = input.GetResolution();
 		auto u = input.GetUConstAccessor();
 		auto v = input.GetVConstAccessor();
 		auto w = input.GetWConstAccessor();
@@ -491,7 +491,7 @@ namespace CubbyFlow
 
 		const auto& x = GetPressure();
 
-		Vector3D invH = 1.0 / input.GridSpacing();
+		Vector3D invH = 1.0 / input.GetGridSpacing();
 
 		x.ParallelForEachIndex([&](size_t i, size_t j, size_t k)
 		{

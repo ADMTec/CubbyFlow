@@ -74,14 +74,14 @@ namespace CubbyFlow
 			return;
 		}
 
-		const auto res = output->Resolution();
+		const auto res = output->GetResolution();
 		if (res.x * res.y * res.z == 0)
 		{
 			CUBBYFLOW_WARN << "Empty grid is provided.";
 			return;
 		}
 
-		const auto bbox = output->BoundingBox();
+		const auto bbox = output->GetBoundingBox();
 		if (bbox.IsEmpty())
 		{
 			CUBBYFLOW_WARN << "Empty domain is provided.";
