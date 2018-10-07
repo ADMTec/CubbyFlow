@@ -17,17 +17,20 @@ using namespace CubbyFlow;
 
 class PyPhysicsAnimation : public PhysicsAnimation
 {
-public:
+ public:
     using PhysicsAnimation::PhysicsAnimation;
 
     void OnAdvanceTimeStep(double timeIntervalInSeconds) override
     {
-        PYBIND11_OVERLOAD_PURE(void, PhysicsAnimation, OnAdvanceTimeStep, timeIntervalInSeconds);
+        PYBIND11_OVERLOAD_PURE(void, PhysicsAnimation, OnAdvanceTimeStep,
+                               timeIntervalInSeconds);
     }
 
-    unsigned int GetNumberOfSubTimeSteps(double timeIntervalInSeconds) const override
+    unsigned int GetNumberOfSubTimeSteps(
+        double timeIntervalInSeconds) const override
     {
-        PYBIND11_OVERLOAD(unsigned int, PhysicsAnimation, GetNumberOfSubTimeSteps, timeIntervalInSeconds);
+        PYBIND11_OVERLOAD(unsigned int, PhysicsAnimation,
+                          GetNumberOfSubTimeSteps, timeIntervalInSeconds);
     }
 
     void OnInitialize() override
@@ -38,11 +41,19 @@ public:
 
 void AddPhysicsAnimation(pybind11::module& m)
 {
-    pybind11::class_<PhysicsAnimation, PyPhysicsAnimation, PhysicsAnimationPtr, Animation>(static_cast<pybind11::handle>(m), "PhysicsAnimation")
-    .def(pybind11::init<>())
-    .def_property("isUsingFixedSubTimeSteps", &PhysicsAnimation::GetIsUsingFixedSubTimeSteps, &PhysicsAnimation::SetIsUsingFixedSubTimeSteps)
-    .def_property("numberOfFixedSubTimeSteps", &PhysicsAnimation::GetNumberOfFixedSubTimeSteps, &PhysicsAnimation::SetNumberOfFixedSubTimeSteps)
-    .def("AdvanceSingleFrame", &PhysicsAnimation::AdvanceSingleFrame)
-    .def_property("currentFrame", &PhysicsAnimation::GetCurrentFrame, &PhysicsAnimation::SetCurrentFrame)
-    .def_property_readonly("currentTimeInSeconds", &PhysicsAnimation::GetCurrentTimeInSeconds);
+    pybind11::class_<PhysicsAnimation, PyPhysicsAnimation, PhysicsAnimationPtr,
+                     Animation>(static_cast<pybind11::handle>(m),
+                                "PhysicsAnimation")
+        .def(pybind11::init<>())
+        .def_property("is_using_fixed_sub_time_steps",
+                      &PhysicsAnimation::GetIsUsingFixedSubTimeSteps,
+                      &PhysicsAnimation::SetIsUsingFixedSubTimeSteps)
+        .def_property("number_of_fixed_sub_time_steps",
+                      &PhysicsAnimation::GetNumberOfFixedSubTimeSteps,
+                      &PhysicsAnimation::SetNumberOfFixedSubTimeSteps)
+        .def("advance_single_frame", &PhysicsAnimation::AdvanceSingleFrame)
+        .def_property("current_frame", &PhysicsAnimation::GetCurrentFrame,
+                      &PhysicsAnimation::SetCurrentFrame)
+        .def_property_readonly("current_time_in_seconds",
+                               &PhysicsAnimation::GetCurrentTimeInSeconds);
 }
