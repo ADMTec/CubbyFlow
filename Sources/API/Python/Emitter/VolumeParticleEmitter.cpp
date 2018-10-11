@@ -89,9 +89,9 @@ void AddVolumeParticleEmitter2(pybind11::module& m)
 		throw std::invalid_argument("Too few/many arguments.");
 	}
 
-	if (kwargs.contains("implicitSurface"))
+	if (kwargs.contains("implicit_surface"))
 	{
-		parseImplicitSurface(kwargs["implicitSurface"]);
+		parseImplicitSurface(kwargs["implicit_surface"]);
 	}
 	if (kwargs.contains("bounds"))
 	{
@@ -101,25 +101,25 @@ void AddVolumeParticleEmitter2(pybind11::module& m)
 	{
 		spacing = kwargs["spacing"].cast<double>();
 	}
-	if (kwargs.contains("initialVel"))
+	if (kwargs.contains("initial_vel"))
 	{
-		initialVel = ObjectToVector2D(kwargs["initialVel"]);
+		initialVel = ObjectToVector2D(kwargs["initial_vel"]);
 	}
-	if (kwargs.contains("maxNumberOfParticles"))
+	if (kwargs.contains("max_number_of_particles"))
 	{
-		maxNumberOfParticles = kwargs["maxNumberOfParticles"].cast<size_t>();
+		maxNumberOfParticles = kwargs["max_number_of_particles"].cast<size_t>();
 	}
 	if (kwargs.contains("jitter"))
 	{
 		jitter = kwargs["jitter"].cast<double>();
 	}
-	if (kwargs.contains("isOneShot"))
+	if (kwargs.contains("is_one_shot"))
 	{
-		isOneShot = kwargs["isOneShot"].cast<bool>();
+		isOneShot = kwargs["is_one_shot"].cast<bool>();
 	}
-	if (kwargs.contains("allowOverlapping"))
+	if (kwargs.contains("allow_overlapping"))
 	{
-		allowOverlapping = kwargs["allowOverlapping"].cast<bool>();
+		allowOverlapping = kwargs["allow_overlapping"].cast<bool>();
 	}
 	if (kwargs.contains("seed"))
 	{
@@ -211,9 +211,9 @@ void AddVolumeParticleEmitter3(pybind11::module& m)
 			throw std::invalid_argument("Too few/many arguments.");
 		}
 
-		if (kwargs.contains("implicitSurface"))
+		if (kwargs.contains("implicit_surface"))
 		{
-			parseImplicitSurface(kwargs["implicitSurface"]);
+			parseImplicitSurface(kwargs["implicit_surface"]);
 		}
 		if (kwargs.contains("bounds"))
 		{
@@ -223,25 +223,25 @@ void AddVolumeParticleEmitter3(pybind11::module& m)
 		{
 			spacing = kwargs["spacing"].cast<double>();
 		}
-		if (kwargs.contains("initialVel"))
+		if (kwargs.contains("initial_vel"))
 		{
-			initialVel = ObjectToVector3D(kwargs["initialVel"]);
+			initialVel = ObjectToVector3D(kwargs["initial_vel"]);
 		}
-		if (kwargs.contains("maxNumberOfParticles"))
+		if (kwargs.contains("max_number_of_particles"))
 		{
-			maxNumberOfParticles = kwargs["maxNumberOfParticles"].cast<size_t>();
+			maxNumberOfParticles = kwargs["max_number_of_particles"].cast<size_t>();
 		}
 		if (kwargs.contains("jitter"))
 		{
 			jitter = kwargs["jitter"].cast<double>();
 		}
-		if (kwargs.contains("isOneShot"))
+		if (kwargs.contains("is_one_shot"))
 		{
-			isOneShot = kwargs["isOneShot"].cast<bool>();
+			isOneShot = kwargs["is_one_shot"].cast<bool>();
 		}
-		if (kwargs.contains("allowOverlapping"))
+		if (kwargs.contains("allow_overlapping"))
 		{
-			allowOverlapping = kwargs["allowOverlapping"].cast<bool>();
+			allowOverlapping = kwargs["allow_overlapping"].cast<bool>();
 		}
 		if (kwargs.contains("seed"))
 		{
