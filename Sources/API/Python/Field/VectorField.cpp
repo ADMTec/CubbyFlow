@@ -17,16 +17,18 @@ using namespace CubbyFlow;
 
 void AddVectorField2(pybind11::module& m)
 {
-	pybind11::class_<VectorField2, VectorField2Ptr, Field2>(static_cast<pybind11::handle>(m), "VectorField2",
-		R"pbdoc(
+    pybind11::class_<VectorField2, VectorField2Ptr, Field2>(
+        static_cast<pybind11::handle>(m), "VectorField2",
+        R"pbdoc(
 			Abstract base class for 2-D vector field.
 		)pbdoc");
 }
 
 void AddVectorField3(pybind11::module& m)
 {
-	pybind11::class_<VectorField3, VectorField3Ptr, Field3>(static_cast<pybind11::handle>(m), "VectorField3",
-		R"pbdoc(
+    pybind11::class_<VectorField3, VectorField3Ptr, Field3>(
+        static_cast<pybind11::handle>(m), "VectorField3",
+        R"pbdoc(
 			Abstract base class for 3-D vector field.
 		)pbdoc");
 }

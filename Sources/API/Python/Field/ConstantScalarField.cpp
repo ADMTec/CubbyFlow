@@ -18,28 +18,30 @@ using namespace CubbyFlow;
 
 void AddConstantScalarField2(pybind11::module& m)
 {
-	pybind11::class_<ConstantScalarField2, ConstantScalarField2Ptr, ScalarField2>(static_cast<pybind11::handle>(m), "ConstantScalarField2",
-		R"pbdoc(
+    pybind11::class_<ConstantScalarField2, ConstantScalarField2Ptr,
+                     ScalarField2>(static_cast<pybind11::handle>(m),
+                                   "ConstantScalarField2",
+                                   R"pbdoc(
 			2-D constant scalar field.
 		)pbdoc")
-	.def(pybind11::init<double>(),
-		R"pbdoc(
+        .def(pybind11::init<double>(),
+             R"pbdoc(
 			Constructs a constant scalar field with given `value`.
 		)pbdoc",
-		pybind11::arg("value"))
-	.def("Sample", [](const ConstantScalarField2& instance, pybind11::object obj)
-	{
-		return instance.Sample(ObjectToVector2D(obj));
-	},
-		R"pbdoc(
+             pybind11::arg("value"))
+        .def("sample",
+             [](const ConstantScalarField2& instance, pybind11::object obj) {
+                 return instance.Sample(ObjectToVector2D(obj));
+             },
+             R"pbdoc(
 			Returns sampled value at given position `x`.
 		)pbdoc",
-		pybind11::arg("x"))
-	.def("Sampler", [](const ConstantScalarField2& instance)
-	{
-		return instance.Sampler();
-	},
-		R"pbdoc(
+             pybind11::arg("x"))
+        .def("sampler",
+             [](const ConstantScalarField2& instance) {
+                 return instance.Sampler();
+             },
+             R"pbdoc(
 			Returns the sampler function.
 
 			This function returns the data sampler function object. The sampling
@@ -49,28 +51,30 @@ void AddConstantScalarField2(pybind11::module& m)
 
 void AddConstantScalarField3(pybind11::module& m)
 {
-	pybind11::class_<ConstantScalarField3, ConstantScalarField3Ptr, ScalarField3>(static_cast<pybind11::handle>(m), "ConstantScalarField3",
-		R"pbdoc(
+    pybind11::class_<ConstantScalarField3, ConstantScalarField3Ptr,
+                     ScalarField3>(static_cast<pybind11::handle>(m),
+                                   "ConstantScalarField3",
+                                   R"pbdoc(
 			3-D constant scalar field.
 		)pbdoc")
-	.def(pybind11::init<double>(),
-		R"pbdoc(
+        .def(pybind11::init<double>(),
+             R"pbdoc(
 			Constructs a constant scalar field with given `value`.
 		)pbdoc",
-		pybind11::arg("value"))
-	.def("Sample", [](const ConstantScalarField3& instance, pybind11::object obj)
-	{
-		return instance.Sample(ObjectToVector3D(obj));
-	},
-		R"pbdoc(
+             pybind11::arg("value"))
+        .def("sample",
+             [](const ConstantScalarField3& instance, pybind11::object obj) {
+                 return instance.Sample(ObjectToVector3D(obj));
+             },
+             R"pbdoc(
 			Returns sampled value at given position `x`.
 		)pbdoc",
-		pybind11::arg("x"))
-	.def("Sampler", [](const ConstantScalarField3& instance)
-	{
-		return instance.Sampler();
-	},
-		R"pbdoc(
+             pybind11::arg("x"))
+        .def("sampler",
+             [](const ConstantScalarField3& instance) {
+                 return instance.Sampler();
+             },
+             R"pbdoc(
 			Returns the sampler function.
 
 			This function returns the data sampler function object. The sampling
