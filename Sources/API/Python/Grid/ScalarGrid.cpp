@@ -21,13 +21,13 @@ void AddScalarGrid2(pybind11::module& m)
     pybind11::class_<ScalarGrid2, ScalarGrid2Ptr, ScalarField2, Grid2>(
         m, "ScalarGrid2",
         R"pbdoc(Abstract base class for 2-D scalar grid structure.)pbdoc")
-        .def_property_readonly("dataSize", &ScalarGrid2::GetDataSize,
+        .def_property_readonly("data_size", &ScalarGrid2::GetDataSize,
                                R"pbdoc(
                                Returns the size of the grid data.
                                This function returns the size of the grid data which is not necessarily
                                equal to the grid resolution if the data is not stored at cell-center.
                                )pbdoc")
-        .def_property_readonly("dataOrigin", &ScalarGrid2::GetDataOrigin,
+        .def_property_readonly("data_origin", &ScalarGrid2::GetDataOrigin,
                                R"pbdoc(
                                Returns the origin of the grid data.
                                This function returns data position for the grid point at (0, 0).
@@ -52,12 +52,11 @@ void AddScalarGrid2(pybind11::module& m)
              Resizes the grid using given parameters.
              Parameters
              ----------
-             - `*args` : resolution, gridSpacing, and gridOrigin arguments.
+             - `*args` : resolution, grid_spacing, and grid_origin arguments.
              - `**kwargs`
                  - resolution : Grid resolution.
-                 - gridSpacing : Grid spacing.
-                 - gridOrigin : Origin point ot the grid.
-                 - domainSizeX : Domain size in x-direction.
+                 - grid_spacing : Grid spacing.
+                 - grid_origin : Origin point at the grid.
              )pbdoc")
         .def("__getitem__",
              [](const ScalarGrid2& instance, pybind11::object obj) -> double {
@@ -146,7 +145,7 @@ void AddScalarGrid2(pybind11::module& m)
             - val : Value to set.
             )pbdoc",
              pybind11::arg("idx"), pybind11::arg("val"))
-        .def("gradientAtDataPoint", &ScalarGrid2::GradientAtDataPoint,
+        .def("gradient_at_data_point", &ScalarGrid2::GradientAtDataPoint,
              R"pbdoc(
              Returns the gradient vector at given data point.
              Parameters
@@ -155,7 +154,7 @@ void AddScalarGrid2(pybind11::module& m)
              - j : Data point index j.
              )pbdoc",
              pybind11::arg("i"), pybind11::arg("j"))
-        .def("laplacianAtDataPoint", &ScalarGrid2::LaplacianAtDataPoint,
+        .def("laplacian_at_data_point", &ScalarGrid2::LaplacianAtDataPoint,
              R"pbdoc(
              Returns the Laplacian at given data point.
              Parameters
@@ -164,9 +163,9 @@ void AddScalarGrid2(pybind11::module& m)
              - j : Data point index j.
              )pbdoc",
              pybind11::arg("i"), pybind11::arg("j"))
-        .def("dataAccessor", &ScalarGrid2::GetDataAccessor,
+        .def("data_accessor", &ScalarGrid2::GetDataAccessor,
              R"pbdoc(The data array accessor.)pbdoc")
-        .def("dataPosition", &ScalarGrid2::GetDataPosition,
+        .def("data_position", &ScalarGrid2::GetDataPosition,
              R"pbdoc(The function that maps data point to its position.)pbdoc")
         .def("fill",
              [](ScalarGrid2& instance, double value) {
@@ -192,7 +191,7 @@ void AddScalarGrid2(pybind11::module& m)
                  }
              },
              R"pbdoc(Fills the grid with given function.)pbdoc")
-        .def("forEachDataPointIndex",
+        .def("for_each_data_point_index",
              [](ScalarGrid2& instance, pybind11::function func) {
                  instance.ForEachDataPointIndex(func);
              },
@@ -228,13 +227,13 @@ void AddScalarGrid3(pybind11::module& m)
     pybind11::class_<ScalarGrid3, ScalarGrid3Ptr, ScalarField3, Grid3>(
         m, "ScalarGrid3",
         R"pbdoc(Abstract base class for 3-D scalar grid structure.)pbdoc")
-        .def_property_readonly("dataSize", &ScalarGrid3::GetDataSize,
+        .def_property_readonly("data_size", &ScalarGrid3::GetDataSize,
                                R"pbdoc(
                                Returns the size of the grid data.
                                This function returns the size of the grid data which is not necessarily
                                equal to the grid resolution if the data is not stored at cell-center.
                                )pbdoc")
-        .def_property_readonly("dataOrigin", &ScalarGrid3::GetDataOrigin,
+        .def_property_readonly("data_origin", &ScalarGrid3::GetDataOrigin,
                                R"pbdoc(
                                Returns the origin of the grid data.
                                This function returns data position for the grid point at (0, 0).
@@ -259,12 +258,11 @@ void AddScalarGrid3(pybind11::module& m)
              Resizes the grid using given parameters.
              Parameters
              ----------
-             - `*args` : resolution, gridSpacing, and gridOrigin arguments.
+             - `*args` : resolution, grid_spacing, and grid_origin arguments.
              - `**kwargs`
                  - resolution : Grid resolution.
-                 - gridSpacing : Grid spacing.
-                 - gridOrigin : Origin point ot the grid.
-                 - domainSizeX : Domain size in x-direction.
+                 - grid_spacing : Grid spacing.
+                 - grid_origin : Origin point at the grid.
              )pbdoc")
         .def("__getitem__",
              [](const ScalarGrid3& instance, pybind11::object obj) -> double {
@@ -356,7 +354,7 @@ void AddScalarGrid3(pybind11::module& m)
             - val : Value to set.
             )pbdoc",
             pybind11::arg("idx"), pybind11::arg("val"))
-        .def("gradientAtDataPoint", &ScalarGrid3::GradientAtDataPoint,
+        .def("gradient_at_data_point", &ScalarGrid3::GradientAtDataPoint,
              R"pbdoc(
              Returns the gradient vector at given data point.
              Parameters
@@ -366,7 +364,7 @@ void AddScalarGrid3(pybind11::module& m)
              - k : Data point index k.
              )pbdoc",
              pybind11::arg("i"), pybind11::arg("j"), pybind11::arg("k"))
-        .def("laplacianAtDataPoint", &ScalarGrid3::LaplacianAtDataPoint,
+        .def("laplacian_at_data_point", &ScalarGrid3::LaplacianAtDataPoint,
              R"pbdoc(
              Returns the Laplacian at given data point.
              Parameters
@@ -376,9 +374,9 @@ void AddScalarGrid3(pybind11::module& m)
              - k : Data point index k.
              )pbdoc",
              pybind11::arg("i"), pybind11::arg("j"), pybind11::arg("k"))
-        .def("dataAccessor", &ScalarGrid3::GetDataAccessor,
+        .def("data_accessor", &ScalarGrid3::GetDataAccessor,
              R"pbdoc(The data array accessor.)pbdoc")
-        .def("dataPosition", &ScalarGrid3::GetDataPosition,
+        .def("data_position", &ScalarGrid3::GetDataPosition,
              R"pbdoc(The function that maps data point to its position.)pbdoc")
         .def("fill",
              [](ScalarGrid3& instance, double value) {
@@ -404,7 +402,7 @@ void AddScalarGrid3(pybind11::module& m)
                  }
              },
              R"pbdoc(Fills the grid with given function.)pbdoc")
-        .def("forEachDataPointIndex",
+        .def("for_each_data_point_index",
              [](ScalarGrid3& instance, pybind11::function func) {
                  instance.ForEachDataPointIndex(func);
              },

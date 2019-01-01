@@ -42,17 +42,16 @@ void AddVertexCenteredScalarGrid2(pybind11::module& m)
              Constructs grid.
              Parameters
              ----------
-             - `*args` : resolution, gridSpacing, and gridOrigin arguments.
+             - `*args` : resolution, grid_spacing, and grid_origin arguments.
              - `**kwargs`
                  - resolution : Grid resolution.
-                 - gridSpacing : Grid spacing.
-                 - gridOrigin : Origin point at the grid.
-                 - domainSizeX : Domain size in x-direction.
+                 - grid_spacing : Grid spacing.
+                 - grid_origin : Origin point at the grid.
              )pbdoc")
         .def_property_readonly(
-            "dataSize", &VertexCenteredScalarGrid2::GetDataSize,
+            "data_size", &VertexCenteredScalarGrid2::GetDataSize,
             R"pbdoc(Returns the actual data point size.)pbdoc")
-        .def_property_readonly("dataOrigin",
+        .def_property_readonly("data_origin",
                                &VertexCenteredScalarGrid2::GetDataOrigin,
                                R"pbdoc(
             Returns data position for the grid point at (0, 0).
@@ -95,17 +94,16 @@ void AddVertexCenteredScalarGrid3(pybind11::module& m)
              Constructs grid.
              Parameters
              ----------
-             - `*args` : resolution, gridSpacing, and gridOrigin arguments.
+             - `*args` : resolution, grid_spacing, and grid_origin arguments.
              - `**kwargs`
                  - resolution : Grid resolution.
-                 - gridSpacing : Grid spacing.
-                 - gridOrigin : Origin point at the grid.
-                 - domainSizeX : Domain size in x-direction.
+                 - grid_spacing : Grid spacing.
+                 - grid_origin : Origin point at the grid.
              )pbdoc")
         .def_property_readonly(
-            "dataSize", &VertexCenteredScalarGrid3::GetDataSize,
+            "data_size", &VertexCenteredScalarGrid3::GetDataSize,
             R"pbdoc(Returns the actual data point size.)pbdoc")
-        .def_property_readonly("dataOrigin",
+        .def_property_readonly("data_origin",
                                &VertexCenteredScalarGrid3::GetDataOrigin,
                                R"pbdoc(
             Returns data position for the grid point at (0, 0, 0).

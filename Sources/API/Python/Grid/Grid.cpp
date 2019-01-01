@@ -29,14 +29,14 @@ void AddGrid2(pybind11::module& m)
                                R"pbdoc(Resolution of the grid.)pbdoc")
         .def_property_readonly("origin", &Grid2::GetOrigin,
                                R"pbdoc(Origin of the grid.)pbdoc")
-        .def_property_readonly("gridSpacing", &Grid2::GetGridSpacing,
+        .def_property_readonly("grid_spacing", &Grid2::GetGridSpacing,
                                R"pbdoc(Spacing between grid points.)pbdoc")
-        .def_property_readonly("boundingBox", &Grid2::GetBoundingBox,
+        .def_property_readonly("bounding_box", &Grid2::GetBoundingBox,
                                R"pbdoc(Bounding box of the entire grid.)pbdoc")
         .def_property_readonly(
-            "cellCenterPosition", &Grid2::GetCellCenterPosition,
+            "cell_center_position", &Grid2::GetCellCenterPosition,
             R"pbdoc(Function that maps grid index to the cell-center position.)pbdoc")
-        .def("forEachCellIndex",
+        .def("for_each_cell_index",
              [](Grid2& instance, pybind11::function func) {
                  instance.ForEachCellIndex(func);
              },
@@ -47,7 +47,7 @@ void AddGrid2(pybind11::module& m)
              grid cell. The order of execution is i-first, j-last.
              )pbdoc",
              pybind11::arg("func"))
-        .def("hasSameShape",
+        .def("has_same_shape",
              [](const Grid2& instance, const Grid2Ptr& other) {
                  return instance.HasSameShape(*other);
              },
@@ -77,14 +77,14 @@ void AddGrid3(pybind11::module& m)
                                R"pbdoc(Resolution of the grid.)pbdoc")
         .def_property_readonly("origin", &Grid3::GetOrigin,
                                R"pbdoc(Origin of the grid.)pbdoc")
-        .def_property_readonly("gridSpacing", &Grid3::GetGridSpacing,
+        .def_property_readonly("grid_spacing", &Grid3::GetGridSpacing,
                                R"pbdoc(Spacing between grid points.)pbdoc")
-        .def_property_readonly("boundingBox", &Grid3::GetBoundingBox,
+        .def_property_readonly("bounding_box", &Grid3::GetBoundingBox,
                                R"pbdoc(Bounding box of the entire grid.)pbdoc")
         .def_property_readonly(
-            "cellCenterPosition", &Grid3::GetCellCenterPosition,
+            "cell_center_position", &Grid3::GetCellCenterPosition,
             R"pbdoc(Function that maps grid index to the cell-center position.)pbdoc")
-        .def("forEachCellIndex",
+        .def("for_each_cell_index",
              [](Grid3& instance, pybind11::function func) {
                  instance.ForEachCellIndex(func);
              },
@@ -95,7 +95,7 @@ void AddGrid3(pybind11::module& m)
              grid cell. The order of execution is i-first, k-last.
              )pbdoc",
              pybind11::arg("func"))
-        .def("hasSameShape",
+        .def("has_same_shape",
              [](const Grid3& instance, const Grid3Ptr& other) {
                  return instance.HasSameShape(*other);
              },

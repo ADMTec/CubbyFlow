@@ -17,8 +17,9 @@ using namespace CubbyFlow;
 
 void AddGridSystemData2(pybind11::module& m)
 {
-	pybind11::class_<GridSystemData2, GridSystemData2Ptr, Serializable>(m, "GridSystemData2",
-		R"pbdoc(
+    pybind11::class_<GridSystemData2, GridSystemData2Ptr, Serializable>(
+        m, "GridSystemData2",
+        R"pbdoc(
 			2-D grid system data.
 
 			This class is the key data structure for storing grid system data. To
@@ -26,13 +27,14 @@ void AddGridSystemData2(pybind11::module& m)
 			face-centered (MAC) grid by default. It can also have additional scalar or
 			vector attributes by adding extra data layer.
 		)pbdoc")
-	.def(pybind11::init<>());
+        .def(pybind11::init<>());
 }
 
 void AddGridSystemData3(pybind11::module& m)
 {
-	pybind11::class_<GridSystemData3, GridSystemData3Ptr, Serializable>(m, "GridSystemData3",
-		R"pbdoc(
+    pybind11::class_<GridSystemData3, GridSystemData3Ptr, Serializable>(
+        m, "GridSystemData3",
+        R"pbdoc(
 			3-D grid system data.
 
 			This class is the key data structure for storing grid system data. To
@@ -40,5 +42,5 @@ void AddGridSystemData3(pybind11::module& m)
 			face-centered (MAC) grid by default. It can also have additional scalar or
 			vector attributes by adding extra data layer.
 		)pbdoc")
-	.def(pybind11::init<>());
+        .def(pybind11::init<>());
 }
