@@ -32,52 +32,52 @@ void AddTriangleMesh3(pybind11::module& m)
                 pybind11::list pointIndices, pybind11::list normalIndices,
                 pybind11::list uvIndices, const Transform3& transform,
                 bool isNormalFlipped) {
-                 TriangleMesh3::PointArray points_;
-                 TriangleMesh3::NormalArray normals_;
-                 TriangleMesh3::UVArray uvs_;
-                 TriangleMesh3::IndexArray pointIndices_;
-                 TriangleMesh3::IndexArray normalIndices_;
-                 TriangleMesh3::IndexArray uvIndices_;
+                 TriangleMesh3::PointArray _points;
+                 TriangleMesh3::NormalArray _normals;
+                 TriangleMesh3::UVArray _uvs;
+                 TriangleMesh3::IndexArray _pointIndices;
+                 TriangleMesh3::IndexArray _normalIndices;
+                 TriangleMesh3::IndexArray _uvIndices;
 
-                 points_.Resize(points.size());
+                 _points.Resize(points.size());
                  for (size_t i = 0; i < points.size(); ++i)
                  {
-                     points_[i] = ObjectToVector3D(points[i]);
+                     _points[i] = ObjectToVector3D(points[i]);
                  }
 
-                 normals_.Resize(normals.size());
+                 _normals.Resize(normals.size());
                  for (size_t i = 0; i < normals.size(); ++i)
                  {
-                     normals_[i] = ObjectToVector3D(normals[i]);
+                     _normals[i] = ObjectToVector3D(normals[i]);
                  }
 
-                 uvs_.Resize(uvs.size());
+                 _uvs.Resize(uvs.size());
                  for (size_t i = 0; i < uvs.size(); ++i)
                  {
-                     uvs_[i] = ObjectToVector2D(uvs[i]);
+                     _uvs[i] = ObjectToVector2D(uvs[i]);
                  }
 
-                 pointIndices_.Resize(pointIndices.size());
+                 _pointIndices.Resize(pointIndices.size());
                  for (size_t i = 0; i < pointIndices.size(); ++i)
                  {
-                     pointIndices_[i] = ObjectToPoint3UI(pointIndices[i]);
+                     _pointIndices[i] = ObjectToPoint3UI(pointIndices[i]);
                  }
 
-                 normalIndices_.Resize(normalIndices.size());
+                 _normalIndices.Resize(normalIndices.size());
                  for (size_t i = 0; i < normalIndices.size(); ++i)
                  {
-                     normalIndices_[i] = ObjectToPoint3UI(normalIndices[i]);
+                     _normalIndices[i] = ObjectToPoint3UI(normalIndices[i]);
                  }
 
-                 uvIndices_.Resize(uvIndices.size());
+                 _uvIndices.Resize(uvIndices.size());
                  for (size_t i = 0; i < uvIndices.size(); ++i)
                  {
-                     uvIndices_[i] = ObjectToPoint3UI(uvIndices[i]);
+                     _uvIndices[i] = ObjectToPoint3UI(uvIndices[i]);
                  }
 
                  new (&instance) TriangleMesh3(
-                     points_, normals_, uvs_, pointIndices_, normalIndices_,
-                     uvIndices_, transform, isNormalFlipped);
+                     _points, _normals, _uvs, _pointIndices, _normalIndices,
+                     _uvIndices, transform, isNormalFlipped);
              },
              R"pbdoc(
 			Constructs mesh with points, normals, uvs, and their indices.
@@ -85,21 +85,21 @@ void AddTriangleMesh3(pybind11::module& m)
              pybind11::arg("points") = pybind11::list(),
              pybind11::arg("normals") = pybind11::list(),
              pybind11::arg("uvs") = pybind11::list(),
-             pybind11::arg("pointIndices") = pybind11::list(),
-             pybind11::arg("normalIndices") = pybind11::list(),
-             pybind11::arg("uvIndices") = pybind11::list(),
+             pybind11::arg("point_indices") = pybind11::list(),
+             pybind11::arg("normal_indices") = pybind11::list(),
+             pybind11::arg("uv_indices") = pybind11::list(),
              pybind11::arg("transform") = Transform3(),
-             pybind11::arg("isNormalFlipped") = false)
-        .def("Clear", &TriangleMesh3::Clear,
+             pybind11::arg("is_normal_flipped") = false)
+        .def("clear", &TriangleMesh3::Clear,
              R"pbdoc(
 			Clears all content.
 		)pbdoc")
-        .def("Set", &TriangleMesh3::Set,
+        .def("set", &TriangleMesh3::Set,
              R"pbdoc(
 			Copies the contents from `other` mesh.
 		)pbdoc",
              pybind11::arg("other"))
-        .def("Swap",
+        .def("swap",
              [](TriangleMesh3& instance, const TriangleMesh3Ptr& other) {
                  instance.Swap(*other);
              },
@@ -107,15 +107,15 @@ void AddTriangleMesh3(pybind11::module& m)
 			Swaps the contents with `other` mesh.
 		)pbdoc",
              pybind11::arg("other"))
-        .def("Area", &TriangleMesh3::Area,
+        .def("area", &TriangleMesh3::Area,
              R"pbdoc(
 			Returns area of this mesh.
 		)pbdoc")
-        .def("Volume", &TriangleMesh3::Volume,
+        .def("volume", &TriangleMesh3::Volume,
              R"pbdoc(
 			Returns volume of this mesh.
 		)pbdoc")
-        .def("GetPoint",
+        .def("get_point",
              [](const TriangleMesh3& instance, size_t i) -> Vector3D {
                  return instance.Point(i);
              },
@@ -123,7 +123,7 @@ void AddTriangleMesh3(pybind11::module& m)
 			Returns i-th point.
 		)pbdoc",
              pybind11::arg("i"))
-        .def("SetPoint",
+        .def("set_point",
              [](TriangleMesh3& instance, size_t i, const Vector3D& pt) {
                  instance.Point(i) = pt;
              },
@@ -131,7 +131,7 @@ void AddTriangleMesh3(pybind11::module& m)
 			Sets `i`-th point with `pt`.
 		)pbdoc",
              pybind11::arg("i"), pybind11::arg("pt"))
-        .def("GetNormal",
+        .def("get_normal",
              [](const TriangleMesh3& instance, size_t i) -> Vector3D {
                  return instance.Normal(i);
              },
@@ -139,7 +139,7 @@ void AddTriangleMesh3(pybind11::module& m)
 			Returns i-th normal.
 		)pbdoc",
              pybind11::arg("i"))
-        .def("SetNormal",
+        .def("set_normal",
              [](TriangleMesh3& instance, size_t i, const Vector3D& n) {
                  instance.Normal(i) = n;
              },
@@ -147,7 +147,7 @@ void AddTriangleMesh3(pybind11::module& m)
 			Sets `i`-th normal with `pt`.
 		)pbdoc",
              pybind11::arg("i"), pybind11::arg("n"))
-        .def("GetPointIndex",
+        .def("get_point_index",
              [](const TriangleMesh3& instance, size_t i) -> Point3UI {
                  return instance.PointIndex(i);
              },
@@ -155,7 +155,7 @@ void AddTriangleMesh3(pybind11::module& m)
 			Returns i-th pointIndex.
 		)pbdoc",
              pybind11::arg("i"))
-        .def("SetPointIndex",
+        .def("set_point_index",
              [](TriangleMesh3& instance, size_t i, const Point3UI& idx) {
                  instance.PointIndex(i) = idx;
              },
@@ -163,7 +163,7 @@ void AddTriangleMesh3(pybind11::module& m)
 			Sets `i`-th pointIndex with `idx`.
 		)pbdoc",
              pybind11::arg("i"), pybind11::arg("idx"))
-        .def("GetNormalIndex",
+        .def("get_normal_index",
              [](const TriangleMesh3& instance, size_t i) -> Point3UI {
                  return instance.NormalIndex(i);
              },
@@ -171,7 +171,7 @@ void AddTriangleMesh3(pybind11::module& m)
 			Returns i-th normalIndexIndex.
 		)pbdoc",
              pybind11::arg("i"))
-        .def("SetNormalIndex",
+        .def("set_normal_index",
              [](TriangleMesh3& instance, size_t i, const Point3UI& idx) {
                  instance.NormalIndex(i) = idx;
              },
@@ -179,7 +179,7 @@ void AddTriangleMesh3(pybind11::module& m)
 			Sets `i`-th normalIndexIndex with `idx`.
 		)pbdoc",
              pybind11::arg("i"), pybind11::arg("idx"))
-        .def("GetUVIndex",
+        .def("get_uv_index",
              [](const TriangleMesh3& instance, size_t i) -> Point3UI {
                  return instance.UVIndex(i);
              },
@@ -187,7 +187,7 @@ void AddTriangleMesh3(pybind11::module& m)
 			Returns i-th uvIndexIndex.
 		)pbdoc",
              pybind11::arg("i"))
-        .def("SetUVIndex",
+        .def("set_uv_index",
              [](TriangleMesh3& instance, size_t i, const Point3UI& idx) {
                  instance.UVIndex(i) = idx;
              },
@@ -195,7 +195,7 @@ void AddTriangleMesh3(pybind11::module& m)
 			Sets `i`-th uvIndexIndex with `idx`.
 		)pbdoc",
              pybind11::arg("i"), pybind11::arg("idx"))
-        .def("Triangle",
+        .def("triangle",
              [](const TriangleMesh3& instance, size_t i) {
                  return std::make_shared<Triangle3>(instance.Triangle(i));
              },
@@ -203,31 +203,31 @@ void AddTriangleMesh3(pybind11::module& m)
 			Returns `i`-th triangle.
 		)pbdoc",
              pybind11::arg("i"))
-        .def("NumberOfPoints", &TriangleMesh3::NumberOfPoints,
+        .def("number_of_points", &TriangleMesh3::NumberOfPoints,
              R"pbdoc(
 			Returns number of points.
 		)pbdoc")
-        .def("NumberOfNormals", &TriangleMesh3::NumberOfNormals,
+        .def("number_of_normals", &TriangleMesh3::NumberOfNormals,
              R"pbdoc(
 			Returns number of normals.
 		)pbdoc")
-        .def("NumberOfUVs", &TriangleMesh3::NumberOfUVs,
+        .def("number_of_uvs", &TriangleMesh3::NumberOfUVs,
              R"pbdoc(
 			Returns number of UV coordinates.
 		)pbdoc")
-        .def("NumberOfTriangles", &TriangleMesh3::NumberOfTriangles,
+        .def("number_of_triangles", &TriangleMesh3::NumberOfTriangles,
              R"pbdoc(
 			Returns number of triangles.
 		)pbdoc")
-        .def("HasNormals", &TriangleMesh3::HasNormals,
+        .def("has_normals", &TriangleMesh3::HasNormals,
              R"pbdoc(
 			Returns true if the mesh has normals.
 		)pbdoc")
-        .def("HasUVs", &TriangleMesh3::HasUVs,
+        .def("has_uvs", &TriangleMesh3::HasUVs,
              R"pbdoc(
 			Returns true if the mesh has UV coordinates.
 		)pbdoc")
-        .def("AddPoint",
+        .def("add_point",
              [](TriangleMesh3& instance, pybind11::object obj) {
                  instance.AddPoint(ObjectToVector3D(obj));
              },
@@ -235,7 +235,7 @@ void AddTriangleMesh3(pybind11::module& m)
 			Adds a point.
 		)pbdoc",
              pybind11::arg("pt"))
-        .def("AddNormal",
+        .def("add_normal",
              [](TriangleMesh3& instance, pybind11::object obj) {
                  instance.AddNormal(ObjectToVector3D(obj));
              },
@@ -243,7 +243,7 @@ void AddTriangleMesh3(pybind11::module& m)
 			Adds a normal.
 		)pbdoc",
              pybind11::arg("n"))
-        .def("AddUV",
+        .def("add_uv",
              [](TriangleMesh3& instance, pybind11::object obj) {
                  instance.AddUV(ObjectToVector2D(obj));
              },
@@ -251,50 +251,50 @@ void AddTriangleMesh3(pybind11::module& m)
 			Adds a UV.
 		)pbdoc",
              pybind11::arg("uv"))
-        .def("AddPointTriangle",
+        .def("add_point_triangle",
              [](TriangleMesh3& instance, pybind11::object obj) {
                  instance.AddPointTriangle(ObjectToPoint3UI(obj));
              },
              R"pbdoc(
 			Adds a triangle with point.
 		)pbdoc",
-             pybind11::arg("newPointIndices"))
-        .def("AddNormalTriangle",
+             pybind11::arg("new_point_indices"))
+        .def("add_normal_triangle",
              [](TriangleMesh3& instance, pybind11::object obj) {
                  instance.AddNormalTriangle(ObjectToPoint3UI(obj));
              },
              R"pbdoc(
 			Adds a triangle with normal.
 		)pbdoc",
-             pybind11::arg("newNormalIndices"))
-        .def("AddUVTriangle",
+             pybind11::arg("new_normal_indices"))
+        .def("add_uv_triangle",
              [](TriangleMesh3& instance, pybind11::object obj) {
                  instance.AddUVTriangle(ObjectToPoint3UI(obj));
              },
              R"pbdoc(
 			Adds a triangle with UV.
 		)pbdoc",
-             pybind11::arg("newUVIndices"))
-        .def("AddTriangle", &TriangleMesh3::AddTriangle,
+             pybind11::arg("new_uv_indices"))
+        .def("add_triangle", &TriangleMesh3::AddTriangle,
              R"pbdoc(
 			Add a triangle.
 		)pbdoc",
              pybind11::arg("tri"))
-        .def("SetFaceNormal", &TriangleMesh3::SetFaceNormal,
+        .def("set_face_normal", &TriangleMesh3::SetFaceNormal,
              R"pbdoc(
 			Sets entire normals to the face normals.
 		)pbdoc")
-        .def("SetAngleWeightedVertexNormal",
+        .def("set_angle_weighted_vertex_normal",
              &TriangleMesh3::SetAngleWeightedVertexNormal,
              R"pbdoc(
 			Sets angle weighted vertex normal.
 		)pbdoc")
-        .def("Scale", &TriangleMesh3::Scale,
+        .def("scale", &TriangleMesh3::Scale,
              R"pbdoc(
 			Scales the mesh by given factor.
 		)pbdoc",
              pybind11::arg("factor"))
-        .def("Translate",
+        .def("translate",
              [](TriangleMesh3& instance, pybind11::object obj) {
                  instance.Translate(ObjectToVector3D(obj));
              },
@@ -302,7 +302,7 @@ void AddTriangleMesh3(pybind11::module& m)
 			Translates the mesh.
 		)pbdoc",
              pybind11::arg("t"))
-        .def("Rotate",
+        .def("rotate",
              [](TriangleMesh3& instance, pybind11::object obj) {
                  instance.Rotate(ObjectToQuaternionD(obj));
              },
@@ -310,20 +310,20 @@ void AddTriangleMesh3(pybind11::module& m)
 			Rotates the mesh.
 		)pbdoc",
              pybind11::arg("rot"))
-        .def("WriteObj",
+        .def("write_obj",
              [](const TriangleMesh3& instance, const std::string& fileName) {
                  instance.WriteObj(fileName);
              },
              R"pbdoc(
 			Writes the mesh in obj format to the file.
 		)pbdoc",
-             pybind11::arg("fileName"))
-        .def("ReadObj",
+             pybind11::arg("file_name"))
+        .def("read_obj",
              [](TriangleMesh3& instance, const std::string& fileName) {
                  instance.ReadObj(fileName);
              },
              R"pbdoc(
 			Reads the mesh in obj format from the file.
 		)pbdoc",
-             pybind11::arg("fileName"));
+             pybind11::arg("file_name"));
 }
