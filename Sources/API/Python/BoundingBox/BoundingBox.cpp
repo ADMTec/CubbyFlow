@@ -26,7 +26,7 @@ void AddBoundingBox2F(pybind11::module& m)
             2-D box-ray intersection result (32-bit float).
         )pbdoc")
         .def_readwrite("is_intersecting",
-                       &BoundingBoxRayIntersection2F::is_intersecting,
+                       &BoundingBoxRayIntersection2F::isIntersecting,
                        R"pbdoc(
             True if the box and ray intersects.
         )pbdoc")
@@ -224,7 +224,7 @@ void AddBoundingBox2D(pybind11::module& m)
             2-D box-ray intersection result (64-bit float).
         )pbdoc")
         .def_readwrite("is_intersecting",
-                       &BoundingBoxRayIntersection2D::is_intersecting,
+                       &BoundingBoxRayIntersection2D::isIntersecting,
                        R"pbdoc(
             True if the box and ray intersects.
         )pbdoc")
@@ -422,7 +422,7 @@ void AddBoundingBox3F(pybind11::module& m)
             3-D box-ray intersection result (32-bit float).
         )pbdoc")
         .def_readwrite("is_intersecting",
-                       &BoundingBoxRayIntersection3F::is_intersecting,
+                       &BoundingBoxRayIntersection3F::isIntersecting,
                        R"pbdoc(
             True if the box and ray intersects.
         )pbdoc")
@@ -624,7 +624,7 @@ void AddBoundingBox3D(pybind11::module& m)
             3-D box-ray intersection result (64-bit float).
         )pbdoc")
         .def_readwrite("is_intersecting",
-                       &BoundingBoxRayIntersection3D::is_intersecting,
+                       &BoundingBoxRayIntersection3D::isIntersecting,
                        R"pbdoc(
             True if the box and ray intersects.
         )pbdoc")
