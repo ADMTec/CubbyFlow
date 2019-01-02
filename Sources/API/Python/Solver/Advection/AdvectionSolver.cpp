@@ -17,8 +17,9 @@ using namespace CubbyFlow;
 
 void AddAdvectionSolver2(pybind11::module& m)
 {
-	pybind11::class_<AdvectionSolver2, AdvectionSolver2Ptr>(static_cast<pybind11::handle>(m), "AdvectionSolver2",
-		R"pbdoc(
+    pybind11::class_<AdvectionSolver2, AdvectionSolver2Ptr>(
+        static_cast<pybind11::handle>(m), "AdvectionSolver2",
+        R"pbdoc(
 			Abstract based class for 2-D grid-based advection solver.
 
 			The implementation of this abstract base class should solve 2-D advection
@@ -28,8 +29,9 @@ void AddAdvectionSolver2(pybind11::module& m)
 
 void AddAdvectionSolver3(pybind11::module& m)
 {
-	pybind11::class_<AdvectionSolver3, AdvectionSolver3Ptr>(static_cast<pybind11::handle>(m), "AdvectionSolver3",
-		R"pbdoc(
+    pybind11::class_<AdvectionSolver3, AdvectionSolver3Ptr>(
+        static_cast<pybind11::handle>(m), "AdvectionSolver3",
+        R"pbdoc(
 			Abstract based class for 3-D grid-based advection solver.
 
 			The implementation of this abstract base class should solve 3-D advection

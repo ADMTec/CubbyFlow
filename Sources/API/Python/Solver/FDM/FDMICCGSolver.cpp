@@ -22,13 +22,13 @@ void AddFDMICCGSolver2(pybind11::module& m)
 			2-D finite difference-type linear system solver using conjugate gradient.
 		)pbdoc")
 	.def(pybind11::init<uint32_t, double>(),
-		pybind11::arg("maxNumberOfIterations"),
+		pybind11::arg("max_number_of_iterations"),
 		pybind11::arg("tolerance"))
-	.def_property_readonly("maxNumberOfIterations", &FDMICCGSolver2::GetMaxNumberOfIterations,
+	.def_property_readonly("max_number_of_iterations", &FDMICCGSolver2::GetMaxNumberOfIterations,
 		R"pbdoc(
 			Max number of ICCG iterations.
 		)pbdoc")
-	.def_property_readonly("lastNumberOfIterations", &FDMICCGSolver2::GetLastNumberOfIterations,
+	.def_property_readonly("last_number_of_iterations", &FDMICCGSolver2::GetLastNumberOfIterations,
 		R"pbdoc(
 			The last number of ICCG iterations the solver made.
 		)pbdoc")
@@ -36,7 +36,7 @@ void AddFDMICCGSolver2(pybind11::module& m)
 		R"pbdoc(
 			The max residual tolerance for the ICCG method.
 		)pbdoc")
-	.def_property_readonly("lastResidual", &FDMICCGSolver2::GetLastResidual,
+	.def_property_readonly("last_residual", &FDMICCGSolver2::GetLastResidual,
 		R"pbdoc(
 			The last residual after the ICCG iterations.
 		)pbdoc");
@@ -49,13 +49,13 @@ void AddFDMICCGSolver3(pybind11::module& m)
 			3-D finite difference-type linear system solver using conjugate gradient.
 		)pbdoc")
 	.def(pybind11::init<uint32_t, double>(),
-		pybind11::arg("maxNumberOfIterations"),
+		pybind11::arg("max_number_of_iterations"),
 		pybind11::arg("tolerance"))
-	.def_property_readonly("maxNumberOfIterations", &FDMICCGSolver3::GetMaxNumberOfIterations,
+	.def_property_readonly("max_number_of_iterations", &FDMICCGSolver3::GetMaxNumberOfIterations,
 		R"pbdoc(
 			Max number of ICCG iterations.
 		)pbdoc")
-	.def_property_readonly("lastNumberOfIterations", &FDMICCGSolver3::GetLastNumberOfIterations,
+	.def_property_readonly("last_number_of_iterations", &FDMICCGSolver3::GetLastNumberOfIterations,
 		R"pbdoc(
 			The last number of ICCG iterations the solver made.
 		)pbdoc")
@@ -63,7 +63,7 @@ void AddFDMICCGSolver3(pybind11::module& m)
 		R"pbdoc(
 			The max residual tolerance for the ICCG method.
 		)pbdoc")
-	.def_property_readonly("lastResidual", &FDMICCGSolver3::GetLastResidual,
+	.def_property_readonly("last_residual", &FDMICCGSolver3::GetLastResidual,
 		R"pbdoc(
 			The last residual after the ICCG iterations.
 		)pbdoc");
