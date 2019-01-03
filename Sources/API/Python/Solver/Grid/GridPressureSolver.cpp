@@ -17,8 +17,9 @@ using namespace CubbyFlow;
 
 void AddGridPressureSolver2(pybind11::module& m)
 {
-	pybind11::class_<GridPressureSolver2, GridPressureSolver2Ptr>(static_cast<pybind11::handle>(m), "GridPressureSolver2",
-		R"pbdoc(
+    pybind11::class_<GridPressureSolver2, GridPressureSolver2Ptr>(
+        static_cast<pybind11::handle>(m), "GridPressureSolver2",
+        R"pbdoc(
 			Abstract base class for 2-D grid-based pressure solver.
 
 			This class represents a 2-D grid-based pressure solver interface which can
@@ -28,8 +29,9 @@ void AddGridPressureSolver2(pybind11::module& m)
 
 void AddGridPressureSolver3(pybind11::module& m)
 {
-	pybind11::class_<GridPressureSolver3, GridPressureSolver3Ptr>(static_cast<pybind11::handle>(m), "GridPressureSolver3",
-		R"pbdoc(
+    pybind11::class_<GridPressureSolver3, GridPressureSolver3Ptr>(
+        static_cast<pybind11::handle>(m), "GridPressureSolver3",
+        R"pbdoc(
 			Abstract base class for 3-D grid-based pressure solver.
 
 			This class represents a 3-D grid-based pressure solver interface which can

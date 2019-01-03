@@ -17,8 +17,9 @@ using namespace CubbyFlow;
 
 void AddGridDiffusionSolver2(pybind11::module& m)
 {
-	pybind11::class_<GridDiffusionSolver2, GridDiffusionSolver2Ptr>(static_cast<pybind11::handle>(m), "GridDiffusionSolver2",
-		R"pbdoc(
+    pybind11::class_<GridDiffusionSolver2, GridDiffusionSolver2Ptr>(
+        static_cast<pybind11::handle>(m), "GridDiffusionSolver2",
+        R"pbdoc(
 			Abstract base class for 2-D grid-based diffusion equation solver.
 
 			This class provides functions to solve the diffusion equation for different
@@ -31,8 +32,9 @@ void AddGridDiffusionSolver2(pybind11::module& m)
 
 void AddGridDiffusionSolver3(pybind11::module& m)
 {
-	pybind11::class_<GridDiffusionSolver3, GridDiffusionSolver3Ptr>(static_cast<pybind11::handle>(m), "GridDiffusionSolver3",
-		R"pbdoc(
+    pybind11::class_<GridDiffusionSolver3, GridDiffusionSolver3Ptr>(
+        static_cast<pybind11::handle>(m), "GridDiffusionSolver3",
+        R"pbdoc(
 			Abstract base class for 3-D grid-based diffusion equation solver.
 
 			This class provides functions to solve the diffusion equation for different

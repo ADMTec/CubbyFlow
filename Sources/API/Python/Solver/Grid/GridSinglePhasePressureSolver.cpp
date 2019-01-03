@@ -17,8 +17,10 @@ using namespace CubbyFlow;
 
 void AddGridSinglePhasePressureSolver2(pybind11::module& m)
 {
-	pybind11::class_<GridSinglePhasePressureSolver2, GridSinglePhasePressureSolver2Ptr, GridPressureSolver2>(static_cast<pybind11::handle>(m), "GridSinglePhasePressureSolver2",
-		R"pbdoc(
+    pybind11::class_<GridSinglePhasePressureSolver2,
+                     GridSinglePhasePressureSolver2Ptr, GridPressureSolver2>(
+        static_cast<pybind11::handle>(m), "GridSinglePhasePressureSolver2",
+        R"pbdoc(
 			2-D single-phase pressure solver.
 
 			This class implements 2-D single-phase pressure solver. This solver encodes
@@ -32,17 +34,21 @@ void AddGridSinglePhasePressureSolver2(pybind11::module& m)
 			fluid, it is marked as either fluid or atmosphere. Thus, this solver in
 			general, does not compute subgrid structure.
 		)pbdoc")
-	.def(pybind11::init<>())
-	.def_property("linearSystemSolver", &GridSinglePhasePressureSolver2::GetLinearSystemSolver, &GridSinglePhasePressureSolver2::SetLinearSystemSolver,
-		R"pbdoc(
+        .def(pybind11::init<>())
+        .def_property("linear_system_solver",
+                      &GridSinglePhasePressureSolver2::GetLinearSystemSolver,
+                      &GridSinglePhasePressureSolver2::SetLinearSystemSolver,
+                      R"pbdoc(
 			"The linear system solver."
 		)pbdoc");
 }
 
 void AddGridSinglePhasePressureSolver3(pybind11::module& m)
 {
-	pybind11::class_<GridSinglePhasePressureSolver3, GridSinglePhasePressureSolver3Ptr, GridPressureSolver3>(static_cast<pybind11::handle>(m), "GridSinglePhasePressureSolver3",
-		R"pbdoc(
+    pybind11::class_<GridSinglePhasePressureSolver3,
+                     GridSinglePhasePressureSolver3Ptr, GridPressureSolver3>(
+        static_cast<pybind11::handle>(m), "GridSinglePhasePressureSolver3",
+        R"pbdoc(
 			3-D single-phase pressure solver.
 
 			This class implements 3-D single-phase pressure solver. This solver encodes
@@ -56,9 +62,11 @@ void AddGridSinglePhasePressureSolver3(pybind11::module& m)
 			fluid, it is marked as either fluid or atmosphere. Thus, this solver in
 			general, does not compute subgrid structure.
 		)pbdoc")
-	.def(pybind11::init<>())
-	.def_property("linearSystemSolver", &GridSinglePhasePressureSolver3::GetLinearSystemSolver, &GridSinglePhasePressureSolver3::SetLinearSystemSolver,
-		R"pbdoc(
+        .def(pybind11::init<>())
+        .def_property("linear_system_solver",
+                      &GridSinglePhasePressureSolver3::GetLinearSystemSolver,
+                      &GridSinglePhasePressureSolver3::SetLinearSystemSolver,
+                      R"pbdoc(
 			"The linear system solver."
 		)pbdoc");
 }
